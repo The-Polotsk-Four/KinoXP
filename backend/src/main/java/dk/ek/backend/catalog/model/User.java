@@ -10,6 +10,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    private String test;
 
     private String name;
     private String status;
