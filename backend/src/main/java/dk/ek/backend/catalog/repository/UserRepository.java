@@ -1,4 +1,4 @@
 package dk.ek.backend.catalog.repository;
 
-public interface userRepository {
+public interface UserRepository {
 }

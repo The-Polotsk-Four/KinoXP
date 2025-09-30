@@ -1,4 +1,4 @@
 package dk.ek.backend.catalog.model;
 
-public class user {
+public class User {
 }

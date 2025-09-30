@@ -1,4 +1,4 @@
 package dk.ek.backend.catalog.service;
 
-public class userService {
+public class UserService {
 }
