@@ -2,6 +2,7 @@ package dk.ek.backend.catalog.service;
 
 import dk.ek.backend.catalog.Mapper.Mapper;
 import dk.ek.backend.catalog.dto.UserDto;
+import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,14 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public UserDto getUserById(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Brugeren blev ikke fundet med dette id " + id));
+        return toDto(user);
+    }
+
+    private UserDto toDto(User user){
+        return new UserDto(user.getId(), user.getName(), user.getRole(), user.getEmail(), user.getPhoneNumber(), user.getAge());
+    }
 
 }
