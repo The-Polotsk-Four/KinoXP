@@ -1,4 +1,11 @@
 package dk.ek.backend.catalog.dto;
 
-public class UserDto {
-}
+public record UserDto(
+        Long id,
+        String name,
+        String role,
+        String email,
+        int phoneNumber,
+        int age
+)
+{}

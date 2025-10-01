@@ -12,9 +12,9 @@ public class User {
     private Long id;
 
     private String name;
-    private String status;
+    private String role;
     private String email;
-    private int telefonNumber;
+    private int phoneNumber;
     private int age;
 
     public Long getId() {
@@ -25,16 +25,16 @@ public class User {
         return name;
     }
 
-    public String getStatus() {
-        return status;
+    public String getRole() {
+        return role;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getTelefonNumber() {
-        return telefonNumber;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
     public int getAge() {
@@ -49,16 +49,16 @@ public class User {
         this.name = name;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setTelefonNumber(int telefonNumber) {
-        this.telefonNumber = telefonNumber;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public void setAge(int age) {
