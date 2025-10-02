@@ -4,13 +4,44 @@ import dk.ek.backend.catalog.dto.*;
 import dk.ek.backend.catalog.model.*;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class Mapper {
+
+        public static SeatDto toDto(Seat seat) {
+            return new SeatDto(
+                    seat.getId(),
+                    seat.getRow(),
+                    seat.getSeatNumber(),
+                    seat.getTicket(),
+                    seat.getHall()
+            );
+        }
+
+        public static ShowDto toDto(Show show) {
+            List<TicketDto> tickets = new ArrayList<>();
+            for (Ticket ticket : show.getTickets()) {
+                tickets.add(toDto(ticket));
+            }
+
+            return new ShowDto(
+                    show.getId(),
+                    show.getMovie(),
+                    show.getTimeOfShowing(),
+                    show.getHall(),
+                    tickets
+            );
+        }
 
         public static SnackDto toDto(Snack snack) {
             return new SnackDto(
                     snack.getId(),
-
+                    snack.getName(),
+                    snack.getPrice(),
+                    snack.getQuantity(),
+                    snack.getDateOfPurchase()
             );
         }
 

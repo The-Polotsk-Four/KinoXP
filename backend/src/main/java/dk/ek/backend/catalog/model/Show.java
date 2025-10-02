@@ -19,14 +19,14 @@ public class Show {
     private Hall hall;
 
     @OneToMany
-    private List<Ticket> ticket;
+    private List<Ticket> tickets;
 
-    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> ticket) {
+    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> tickets) {
         this.id = id;
         this.movie = movie;
         this.timeOfShowing = timeOfShowing;
         this.hall = hall;
-        this.ticket = ticket;
+        this.tickets = tickets;
     }
 
     public Show() {
@@ -64,11 +64,11 @@ public class Show {
         this.hall = hall;
     }
 
-    public List<Ticket> getTicket() {
-        return ticket;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTicket(List<Ticket> ticket) {
-        this.ticket = ticket;
+    public void setTickets(List<Ticket> ticket) {
+        this.tickets = ticket;
     }
 }
