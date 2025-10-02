@@ -1,9 +1,7 @@
 package dk.ek.backend.catalog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.mapping.ToOne;
 
 import java.util.List;
 
@@ -19,6 +17,9 @@ public class Movie {
     private List<String> actors;
     private boolean status;
 
+    @OneToMany
+    private List<Show> show;
+
     public Movie(int id, String title, String description, String image, List<String> actors, boolean status) {
         this.id = id;
         this.title = title;
@@ -26,6 +27,14 @@ public class Movie {
         this.image = image;
         this.actors = actors;
         this.status = status;
+    }
+
+    public List<Show> getShow() {
+        return show;
+    }
+
+    public void setShow(List<Show> show) {
+        this.show = show;
     }
 
     public Movie() {

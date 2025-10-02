@@ -1,9 +1,6 @@
 package dk.ek.backend.catalog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +17,13 @@ public class Ticket {
     private LocalDateTime timeOfPurchase;
     private LocalDateTime timeOfShowing;
 
+    @ManyToOne
+    private Show show;
+
+    @OneToOne
+    private Ticket ticket;
+
+
     public Ticket(int id, double price, String customerEmail, int customerPhoneNumber, boolean status, LocalDateTime timeOfPurchase, LocalDateTime timeOfShowing) {
         this.id = id;
         this.price = price;
@@ -32,6 +36,22 @@ public class Ticket {
 
 
     public Ticket() {
+    }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public LocalDateTime getTimeOfPurchase() {
