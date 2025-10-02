@@ -1,20 +1,74 @@
 package dk.ek.backend.catalog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
     private Movie movie;
     private LocalDateTime timeOfShowing;
-    private Hall hall;
-    private Ticket ticket;
 
+    @ManyToOne
+    private Hall hall;
+
+    @OneToMany
+    private List<Ticket> ticket;
+
+    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> ticket) {
+        this.id = id;
+        this.movie = movie;
+        this.timeOfShowing = timeOfShowing;
+        this.hall = hall;
+        this.ticket = ticket;
+    }
+
+    public Show() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public LocalDateTime getTimeOfShowing() {
+        return timeOfShowing;
+    }
+
+    public void setTimeOfShowing(LocalDateTime timeOfShowing) {
+        this.timeOfShowing = timeOfShowing;
+    }
+
+    public Hall getHall() {
+        return hall;
+    }
+
+    public void setHall(Hall hall) {
+        this.hall = hall;
+    }
+
+    public List<Ticket> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(List<Ticket> ticket) {
+        this.ticket = ticket;
+    }
 }

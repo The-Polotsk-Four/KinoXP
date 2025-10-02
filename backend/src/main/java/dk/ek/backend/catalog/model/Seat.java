@@ -1,9 +1,6 @@
 package dk.ek.backend.catalog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Seat {
@@ -12,6 +9,61 @@ public class Seat {
     private Long id;
     private int row;
     private int seatNumber;
+
+    @OneToOne
     private Ticket ticket;
+
+    @ManyToOne
     private Hall hall;
+
+    public Seat(Long id, int row, int seatNumber, Ticket ticket, Hall hall) {
+        this.id = id;
+        this.row = row;
+        this.seatNumber = seatNumber;
+        this.ticket = ticket;
+        this.hall = hall;
+    }
+
+    public Seat() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
+    public Hall getHall() {
+        return hall;
+    }
+
+    public void setHall(Hall hall) {
+        this.hall = hall;
+    }
 }

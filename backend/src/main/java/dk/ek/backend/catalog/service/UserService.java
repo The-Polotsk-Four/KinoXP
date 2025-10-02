@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.antlr.v4.runtime.tree.xpath.XPath.findAll;
-
 @Service
 public class UserService {
 
@@ -24,7 +22,7 @@ public class UserService {
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(Mapper::toUserDto)
+                .map(Mapper::toDto)
                 .collect(Collectors.toList());
     }
 
