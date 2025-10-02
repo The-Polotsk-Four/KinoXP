@@ -15,12 +15,14 @@ public class Movie {
     private String description;
     private String image;
     private List<String> actors;
-    private boolean status;
+
+    @Enumerated(EnumType.STRING)
+    private MovieStatus status;
 
     @OneToMany
     private List<Show> show;
 
-    public Movie(int id, String title, String description, String image, List<String> actors, boolean status) {
+    public Movie(int id, String title, String description, String image, List<String> actors, MovieStatus status) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -80,11 +82,11 @@ public class Movie {
         this.actors = actors;
     }
 
-    public boolean isStatus() {
+    public MovieStatus isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(MovieStatus status) {
         this.status = status;
     }
 }
