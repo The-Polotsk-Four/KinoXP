@@ -14,7 +14,7 @@ public class User {
     private UserRole userRole;
 
     private String name;
-    private String role;
+
     private String email;
     private int phoneNumber;
     private int age;
@@ -22,6 +22,27 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private TimeSlot timeSlot;
 
+    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, int age, TimeSlot timeSlot) {
+        this.id = id;
+        this.userRole = userRole;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.timeSlot = timeSlot;
+    }
+
+    public User() {
+
+    }
+
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(TimeSlot timeSlot) {
+        this.timeSlot = timeSlot;
+    }
 
     public UserRole getUserRole() {
         return userRole;
@@ -35,9 +56,7 @@ public class User {
         return name;
     }
 
-    public String getRole() {
-        return role;
-    }
+
 
     public String getEmail() {
         return email;
@@ -61,10 +80,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public void setEmail(String email) {

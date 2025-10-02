@@ -7,5 +7,5 @@ import dk.ek.backend.catalog.model.Ticket;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record ShowDto(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<TicketDto> ticket) {
+public record ShowDto(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<TicketDto> tickets) {
 }

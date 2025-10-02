@@ -32,6 +32,16 @@ public class Show {
     public Show() {
     }
 
+    public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+        ticket.setShow(this);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        this.tickets.remove(ticket);
+        ticket.setShow(null);
+    }
+
     public Long getId() {
         return id;
     }

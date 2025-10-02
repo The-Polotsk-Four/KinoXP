@@ -70,10 +70,11 @@ public class Mapper {
         return new UserDto(
                 user.getId(),
                 user.getName(),
-                user.getRole(),
+                user.getUserRole(),
                 user.getEmail(),
                 user.getPhoneNumber(),
-                user.getAge()
+                user.getAge(),
+                user.getTimeSlot()
         );
     }
 
@@ -117,6 +118,69 @@ public class Mapper {
                 order.addTicket(toEntity(ticketDto));
             }
             return order;
+    }
+
+    public static Seat toEntity(SeatDto seatDto){
+            Seat seat = new Seat();
+            seat.setId(seatDto.id());
+            seat.setRow(seatDto.row());
+            seat.setSeatNumber(seatDto.seatNumber());
+            seat.setTicket(seatDto.ticket());
+            seat.setHall(seatDto.hall());
+            return seat;
+    }
+
+    public static Show toEntity(ShowDto showDto){
+            Show show = new Show();
+            show.setId(showDto.id());
+            show.setMovie(showDto.movie());
+            show.setTimeOfShowing(showDto.timeOfShowing());
+            show.setHall(showDto.hall());
+
+            for (TicketDto ticketDto : showDto.tickets()){
+                show.addTicket(toEntity(ticketDto));
+            }
+            return show;
+    }
+
+    public static Snack toEntity(SnackDto snackDto){
+            Snack snack = new Snack();
+            snack.setId(snackDto.id());
+            snack.setName(snackDto.name());
+            snack.setPrice(snackDto.price());
+            return snack;
+    }
+
+    public static Ticket toEntity(TicketDto ticketDto){
+            Ticket ticket = new Ticket();
+            ticket.setId(ticketDto.id());
+            ticket.setPrice(ticketDto.price());
+            ticket.setStatus(ticketDto.status());
+            ticket.setTimeOfShowing(ticketDto.timeOfShowing());
+            ticket.setSeat(ticketDto.seat());
+            return ticket;
+    }
+
+    public static TimeSlot toEntity(TimeSlotDto timeSlotDto){
+            TimeSlot timeSlot = new TimeSlot();
+            timeSlot.setId(timeSlotDto.id());
+            timeSlot.setStartTime(timeSlotDto.startTime());
+            timeSlot.setEndTime(timeSlotDto.endTime());
+            timeSlot.setRole(timeSlotDto.role());
+            timeSlot.setEmployee(timeSlotDto.employee());
+            return timeSlot;
+    }
+
+    public static User toEntity(UserDto userDto){
+            User user = new User();
+            user.setId(userDto.id());
+            user.setUserRole(userDto.role());
+            user.setEmail(userDto.email());
+            user.setPhoneNumber(userDto.phoneNumber());
+            user.setAge(userDto.age());
+            user.setTimeSlot(userDto.timeSlot());
+            return user;
+
     }
 
 
