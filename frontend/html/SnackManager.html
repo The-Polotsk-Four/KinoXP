@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/EmployeeHeaderAndFooter.css">
+    <link rel="stylesheet" href="../css/SnackManager.css">
+
+    <title>Snack manager</title>
+</head>
+<body>
+<header>
+    <img src="../css/img/logo.png" alt="Logo">
+    <h1>Velkommen til Snack manager</h1>
+</header>
+
+<form id="snackForm">
+    <input type="text" id="name" placeholder="Snack name" required>
+    <input type="number" step="0.01" id="price" placeholder="Price" required>
+    <input type="number" id="quantity" placeholder="Quantity" required>
+    <input type="date" id="dateOfPurchase" required>
+    <button type="submit">Add Snack</button>
+</form>
+
+<h2>All Snacks</h2>
+<ul id="snackList"></ul>
+
+<script src="app.js"></script>
+<footer>
+    <p>2025 KinoXP</p>
+</footer>
+</body>
+</html>
