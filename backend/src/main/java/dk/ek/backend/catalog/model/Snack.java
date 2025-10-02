@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 public class Snack {
 
@@ -12,7 +15,7 @@ public class Snack {
     private Long id;
 
     private String name;
-    private int price;
+    private BigDecimal price;
 
     public Long getId() {
         return id;
@@ -30,19 +33,19 @@ public class Snack {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getDateOfPurchase() {
+    public LocalDateTime getDateOfPurchase() {
         return dateOfPurchase;
     }
 
-    public void setDateOfPurchase(int dateOfPurchase) {
+    public void setDateOfPurchase(LocalDateTime dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
 
@@ -54,7 +57,7 @@ public class Snack {
         this.quantity = quantity;
     }
 
-    private int dateOfPurchase;
+    private LocalDateTime dateOfPurchase;
     private int quantity;
 
 
