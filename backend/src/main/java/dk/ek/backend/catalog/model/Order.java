@@ -32,6 +32,16 @@ public class Order {
         this.tickets = tickets;
     }
 
+    public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+//        ticket.setOrder(this);
+    }
+
+//    public void removeShow(Show show) {
+//        this.show.remove(show);
+//        show.setHall(null);
+//    }
+
     public Long getId() {
         return id;
     }

@@ -25,6 +25,26 @@ public class Hall {
     public Hall() {
     }
 
+    public void addSeat(Seat seat){
+        this.seat.add(seat);
+        seat.setHall(this);
+    }
+
+    public void removeSeat(Seat seat) {
+        this.seat.remove(seat);
+        seat.setHall(null);
+    }
+
+    public void addShow(Show show){
+        this.show.add(show);
+        show.setHall(this);
+    }
+
+    public void removeShow(Show show) {
+        this.show.remove(show);
+        show.setHall(null);
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,13 +1,7 @@
 package dk.ek.backend.catalog.mapper;
 
-import dk.ek.backend.catalog.dto.SnackDto;
-import dk.ek.backend.catalog.dto.TicketDto;
-import dk.ek.backend.catalog.dto.TimeSlotDto;
-import dk.ek.backend.catalog.dto.UserDto;
-import dk.ek.backend.catalog.model.Snack;
-import dk.ek.backend.catalog.model.Ticket;
-import dk.ek.backend.catalog.model.TimeSlot;
-import dk.ek.backend.catalog.model.User;
+import dk.ek.backend.catalog.dto.*;
+import dk.ek.backend.catalog.model.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -51,5 +45,49 @@ public class Mapper {
                 user.getAge()
         );
     }
+
+    public static Hall toEntity(HallDto hallDto){
+            Hall hall= new Hall();
+            hall.setId(hallDto.id());
+
+            for (SeatDto seatDto : hallDto.seat()){
+                hall.addSeat(toEntity(seatDto));
+            }
+            for (ShowDto showDto : hallDto.show()){
+                hall.addShow(toEntity(showDto));
+            }
+            return hall;
+    }
+
+    public static Movie toEntity(MovieDto movieDto){
+            Movie movie = new Movie();
+            movie.setId(movieDto.id());
+            movie.setTitle(movieDto.title());
+            movie.setDescription(movieDto.description());
+            movie.setImage(movieDto.image());
+            movie.setActors(movieDto.actors());
+            movie.setStatus(movieDto.status());
+
+        for (ShowDto showDto : movieDto.show()){
+            movie.addShow(toEntity(showDto));
+        }
+        return movie;
+    }
+
+    public static Order toEntity(OrderDto orderDto){
+            Order order = new Order();
+            order.setId(orderDto.id());
+            order.setPrice(orderDto.price());
+            order.setCustomerEmail(orderDto.customerEmail());
+            order.setCustomerPhoneNumber(orderDto.customerPhoneNumber());
+            order.setTimeOfPurchase(orderDto.timeOfPurchase());
+
+            for (TicketDto ticketDto: orderDto.tickets()){
+                order.addTicket(toEntity(ticketDto));
+            }
+            return order;
+    }
+
+
 
 }
