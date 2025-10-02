@@ -1,13 +1,12 @@
 package dk.ek.backend.catalog.service;
 
-import dk.ek.backend.catalog.Mapper.Mapper;
+import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.dto.UserDto;
 import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
