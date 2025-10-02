@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Ticket {
 
@@ -12,19 +14,40 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double price;
-    private String email;
-    private int phoneNumber;
+    private String customerEmail;
+    private int customerPhoneNumber;
     private boolean status;
+    private LocalDateTime timeOfPurchase;
+    private LocalDateTime timeOfShowing;
 
-    public Ticket(int id, double price, String email, int phoneNumber, boolean status) {
+    public Ticket(int id, double price, String customerEmail, int customerPhoneNumber, boolean status, LocalDateTime timeOfPurchase, LocalDateTime timeOfShowing) {
         this.id = id;
         this.price = price;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.customerEmail = customerEmail;
+        this.customerPhoneNumber = customerPhoneNumber;
         this.status = status;
+        this.timeOfPurchase = timeOfPurchase;
+        this.timeOfShowing = timeOfShowing;
     }
 
+
     public Ticket() {
+    }
+
+    public LocalDateTime getTimeOfPurchase() {
+        return timeOfPurchase;
+    }
+
+    public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
+        this.timeOfPurchase = timeOfPurchase;
+    }
+
+    public LocalDateTime getTimeOfShowing() {
+        return timeOfShowing;
+    }
+
+    public void setTimeOfShowing(LocalDateTime timeOfShowing) {
+        this.timeOfShowing = timeOfShowing;
     }
 
     public int getId() {
@@ -43,20 +66,20 @@ public class Ticket {
         this.price = price;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCustomerEmail(String email) {
+        this.customerEmail = email;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public int getCustomerPhoneNumber() {
+        return customerPhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCustomerPhoneNumber(int phoneNumber) {
+        this.customerPhoneNumber = phoneNumber;
     }
 
     public boolean isStatus() {
