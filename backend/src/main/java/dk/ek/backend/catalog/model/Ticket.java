@@ -18,19 +18,15 @@ public class Ticket {
     private Show show;
 
     @OneToOne
-    private Ticket ticket;
+    private Seat seat;
 
-    @ManyToOne
-    private Order order;
-
-    public Ticket(Long id, double price, boolean status, LocalDateTime timeOfShowing, Show show, Ticket ticket, Order order) {
+    public Ticket(Long id, double price, boolean status, LocalDateTime timeOfShowing, Show show, Seat seat) {
         this.id = id;
         this.price = price;
         this.status = status;
         this.timeOfShowing = timeOfShowing;
         this.show = show;
-        this.ticket = ticket;
-        this.order = order;
+        this.seat = seat;
     }
 
     public Ticket() {
@@ -44,12 +40,12 @@ public class Ticket {
         this.show = show;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Seat getSeat() {
+        return seat;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setSeat(Seat seat) {
+        this.seat = seat;
     }
 
     public LocalDateTime getTimeOfShowing() {
@@ -82,13 +78,5 @@ public class Ticket {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 }
