@@ -28,7 +28,7 @@ public class UserService {
 
     public UserDto getUserById(Long id) {
         return userRepository.findById(id)
-                .map(Mapper::toUserDto)
+                .map(Mapper::toDto)
                 .orElseThrow(() -> new RuntimeException("Work not found with id: " + id));
     }
 
