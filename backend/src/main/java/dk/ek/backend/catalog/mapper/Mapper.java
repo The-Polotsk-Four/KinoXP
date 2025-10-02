@@ -10,63 +10,97 @@ import java.util.List;
 @Component
 public class Mapper {
 
-        public static SeatDto toDto(Seat seat) {
-            return new SeatDto(
-                    seat.getId(),
-                    seat.getRow(),
-                    seat.getSeatNumber(),
-                    seat.getTicket(),
-                    seat.getHall()
-            );
+    public static MovieDto toDto(Movie movie) {
+
+        List<ShowDto> shows = new ArrayList<>();
+        for (Show show : movie.getShow()) {
+            shows.add(toDto(show));
         }
 
-        public static ShowDto toDto(Show show) {
-            List<TicketDto> tickets = new ArrayList<>();
-            for (Ticket ticket : show.getTickets()) {
-                tickets.add(toDto(ticket));
-            }
+        return new MovieDto(
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDescription(),
+                movie.getImage(),
+                movie.getActors(),
+                movie.getStatus(),
+                shows
+        );
+    }
 
-            return new ShowDto(
-                    show.getId(),
-                    show.getMovie(),
-                    show.getTimeOfShowing(),
-                    show.getHall(),
-                    tickets
-            );
+    public static OrderDto toDto(Order order) {
+        List<TicketDto> tickets = new ArrayList<>();
+        for (Ticket ticket : order.getTickets()) {
+            tickets.add(toDto(ticket));
         }
 
-        public static SnackDto toDto(Snack snack) {
-            return new SnackDto(
-                    snack.getId(),
-                    snack.getName(),
-                    snack.getPrice(),
-                    snack.getQuantity(),
-                    snack.getDateOfPurchase()
-            );
+        return new OrderDto(
+                order.getId(),
+                order.getPrice(),
+                order.getCustomerEmail(),
+                order.getCustomerPhoneNumber(),
+                order.getTimeOfPurchase(),
+                tickets
+        );
+    }
+
+    public static SeatDto toDto(Seat seat) {
+        return new SeatDto(
+                seat.getId(),
+                seat.getRow(),
+                seat.getSeatNumber(),
+                seat.getTicket(),
+                seat.getHall()
+        );
+    }
+
+    public static ShowDto toDto(Show show) {
+        List<TicketDto> tickets = new ArrayList<>();
+        for (Ticket ticket : show.getTickets()) {
+            tickets.add(toDto(ticket));
         }
 
-        public static TicketDto toDto(Ticket ticket) {
-            return new TicketDto(
-                    ticket.getId(),
-                    ticket.getPrice(),
-                    ticket.isStatus(),
-                    ticket.getTimeOfShowing(),
-                    ticket.getShow(),
-                    ticket.getSeat()
-            );
-        }
+        return new ShowDto(
+                show.getId(),
+                show.getMovie(),
+                show.getTimeOfShowing(),
+                show.getHall(),
+                tickets
+        );
+    }
 
-        public static TimeSlotDto toDto(TimeSlot timeSlot) {
-            return new TimeSlotDto(
-                  timeSlot.getId(),
-                  timeSlot.getStartTime(),
-                  timeSlot.getEndTime(),
-                  timeSlot.getRole(),
-                  timeSlot.getEmployee()
-            );
-        }
+    public static SnackDto toDto(Snack snack) {
+        return new SnackDto(
+                snack.getId(),
+                snack.getName(),
+                snack.getPrice(),
+                snack.getQuantity(),
+                snack.getDateOfPurchase()
+        );
+    }
 
-        public static UserDto toDto(User user){
+    public static TicketDto toDto(Ticket ticket) {
+        return new TicketDto(
+                ticket.getId(),
+                ticket.getPrice(),
+                ticket.isStatus(),
+                ticket.getTimeOfShowing(),
+                ticket.getShow(),
+                ticket.getSeat()
+        );
+    }
+
+    public static TimeSlotDto toDto(TimeSlot timeSlot) {
+        return new TimeSlotDto(
+                timeSlot.getId(),
+                timeSlot.getStartTime(),
+                timeSlot.getEndTime(),
+                timeSlot.getRole(),
+                timeSlot.getEmployee()
+        );
+    }
+
+    public static UserDto toDto(User user){
         return new UserDto(
                 user.getId(),
                 user.getName(),
