@@ -1,9 +1,6 @@
 package dk.ek.backend.catalog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table (name = "users")
@@ -13,11 +10,22 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
     private String name;
     private String role;
     private String email;
     private int phoneNumber;
     private int age;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private TimeSlot timeSlot;
+
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
 
     public Long getId() {
         return id;
@@ -41,6 +49,10 @@ public class User {
 
     public int getAge() {
         return age;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public void setId(Long id) {
