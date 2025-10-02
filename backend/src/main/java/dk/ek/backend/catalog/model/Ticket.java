@@ -9,12 +9,9 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private double price;
-    private String customerEmail;
-    private int customerPhoneNumber;
     private boolean status;
-    private LocalDateTime timeOfPurchase;
     private LocalDateTime timeOfShowing;
 
     @ManyToOne
@@ -23,17 +20,18 @@ public class Ticket {
     @OneToOne
     private Ticket ticket;
 
+    @ManyToOne
+    private Order order;
 
-    public Ticket(int id, double price, String customerEmail, int customerPhoneNumber, boolean status, LocalDateTime timeOfPurchase, LocalDateTime timeOfShowing) {
+    public Ticket(Long id, double price, boolean status, LocalDateTime timeOfShowing, Show show, Ticket ticket, Order order) {
         this.id = id;
         this.price = price;
-        this.customerEmail = customerEmail;
-        this.customerPhoneNumber = customerPhoneNumber;
         this.status = status;
-        this.timeOfPurchase = timeOfPurchase;
         this.timeOfShowing = timeOfShowing;
+        this.show = show;
+        this.ticket = ticket;
+        this.order = order;
     }
-
 
     public Ticket() {
     }
@@ -54,14 +52,6 @@ public class Ticket {
         this.ticket = ticket;
     }
 
-    public LocalDateTime getTimeOfPurchase() {
-        return timeOfPurchase;
-    }
-
-    public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
-        this.timeOfPurchase = timeOfPurchase;
-    }
-
     public LocalDateTime getTimeOfShowing() {
         return timeOfShowing;
     }
@@ -70,11 +60,11 @@ public class Ticket {
         this.timeOfShowing = timeOfShowing;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,27 +76,19 @@ public class Ticket {
         this.price = price;
     }
 
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String email) {
-        this.customerEmail = email;
-    }
-
-    public int getCustomerPhoneNumber() {
-        return customerPhoneNumber;
-    }
-
-    public void setCustomerPhoneNumber(int phoneNumber) {
-        this.customerPhoneNumber = phoneNumber;
-    }
-
     public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
