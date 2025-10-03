@@ -11,6 +11,7 @@ public class Mapper {
             return new SnackDto(
                     snack.getId(),
 
+
             );
         }
 
@@ -52,7 +53,10 @@ public class Mapper {
                     movie.getId(),
                     movie.getTitle(),
                     movie.getDescription(),
-                    movie.getImage()
+                    movie.getImage(),
+                    movie.getActors(),
+                    movie.getRuntime(),
+                    movie.getTrailer()
 
             );
         }

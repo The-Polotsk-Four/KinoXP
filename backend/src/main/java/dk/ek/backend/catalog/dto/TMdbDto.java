@@ -11,9 +11,4 @@ public record TMdbDto (
         int runtime,
         String trailer
 )
-
-{
-
-    public TMdbDto(int id, String title, String description, String image) {
-    }
-}
+{}
