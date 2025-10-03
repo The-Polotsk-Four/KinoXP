@@ -32,7 +32,14 @@ public class UserService {
     }
 
     private UserDto toDto(User user) {
-        return new UserDto(user.getId(), user.getName(), user.getUserRole(), user.getEmail(), user.getPhoneNumber(), user.getAge(), user.getTimeSlot());
+        return new UserDto(
+                user.getId(),
+                user.getName(),
+                user.getUserRole(),
+                user.getEmail(),
+                user.getPhoneNumber(),
+                user.getAge(),
+                Mapper.toDto(user.getTimeSlot()));
     }
 
     private User toEntity(UserDto userDto) {

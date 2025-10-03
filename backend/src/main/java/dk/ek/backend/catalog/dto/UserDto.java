@@ -1,6 +1,5 @@
 package dk.ek.backend.catalog.dto;
 
-import dk.ek.backend.catalog.model.TimeSlot;
 import dk.ek.backend.catalog.model.UserRole;
 
 public record UserDto(
@@ -10,6 +9,6 @@ public record UserDto(
         String email,
         int phoneNumber,
         int age,
-        TimeSlot timeSlot
+        TimeSlotDto timeSlot
 )
 {}

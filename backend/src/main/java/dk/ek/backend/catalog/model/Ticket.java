@@ -17,10 +17,10 @@ public class Ticket {
     @ManyToOne
     private Show show;
 
-    @ManyToOne
-    private Order order;
+//    @ManyToOne
+//    private Order order;
 
-    @OneToOne
+    @ManyToOne
     private Seat seat;
 
     public Ticket(Long id, double price, boolean status, LocalDateTime timeOfShowing, Show show, Seat seat) {

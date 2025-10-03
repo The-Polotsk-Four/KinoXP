@@ -59,6 +59,4 @@ public class Snack {
 
     private LocalDateTime dateOfPurchase;
     private int quantity;
-
-
 }

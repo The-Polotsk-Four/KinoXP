@@ -5,7 +5,9 @@ import dk.ek.backend.catalog.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class Mapper {
@@ -46,7 +48,7 @@ public class Mapper {
     }
 
     public static OrderDto toDto(Order order) {
-        List<TicketDto> tickets = new ArrayList<>();
+        Set<TicketDto> tickets = new HashSet<>();
         for (Ticket ticket : order.getTickets()) {
             tickets.add(toDto(ticket));
         }
@@ -62,12 +64,17 @@ public class Mapper {
     }
 
     public static SeatDto toDto(Seat seat) {
+        Set<TicketDto> tickets = new HashSet<>();
+        for (Ticket ticket : seat.getTickets()) {
+            tickets.add(toDto(ticket));
+        }
+
         return new SeatDto(
                 seat.getId(),
-                seat.getRow(),
+                seat.getRowNumber(),
                 seat.getSeatNumber(),
-                seat.getTicket(),
-                seat.getHall()
+                tickets,
+                toDto(seat.getHall())
         );
     }
 
@@ -79,9 +86,9 @@ public class Mapper {
 
         return new ShowDto(
                 show.getId(),
-                show.getMovie(),
+                toDto(show.getMovie()),
                 show.getTimeOfShowing(),
-                show.getHall(),
+                toDto(show.getHall()),
                 tickets
         );
     }
@@ -102,8 +109,8 @@ public class Mapper {
                 ticket.getPrice(),
                 ticket.isStatus(),
                 ticket.getTimeOfShowing(),
-                ticket.getShow(),
-                ticket.getSeat()
+                Mapper.toDto(ticket.getShow()),
+                Mapper.toDto(ticket.getSeat())
         );
     }
 
@@ -113,7 +120,7 @@ public class Mapper {
                 timeSlot.getStartTime(),
                 timeSlot.getEndTime(),
                 timeSlot.getRole(),
-                timeSlot.getEmployee()
+                Mapper.toDto(timeSlot.getEmployee())
         );
     }
 
@@ -125,7 +132,7 @@ public class Mapper {
                 user.getEmail(),
                 user.getPhoneNumber(),
                 user.getAge(),
-                user.getTimeSlot()
+                toDto(user.getTimeSlot())
         );
     }
 
@@ -174,19 +181,23 @@ public class Mapper {
     public static Seat toEntity(SeatDto seatDto){
             Seat seat = new Seat();
             seat.setId(seatDto.id());
-            seat.setRow(seatDto.row());
+            seat.setRowNumber(seatDto.row());
             seat.setSeatNumber(seatDto.seatNumber());
-            seat.setTicket(seatDto.ticket());
-            seat.setHall(seatDto.hall());
+
+            for (TicketDto ticketDto: seatDto.ticket()) {
+                seat.addTicket(toEntity(ticketDto));
+            }
+
+            seat.setHall(Mapper.toEntity(seatDto.hall()));
             return seat;
     }
 
     public static Show toEntity(ShowDto showDto){
             Show show = new Show();
             show.setId(showDto.id());
-            show.setMovie(showDto.movie());
+            show.setMovie(toEntity(showDto.movie()));
             show.setTimeOfShowing(showDto.timeOfShowing());
-            show.setHall(showDto.hall());
+            show.setHall(toEntity(showDto.hall()));
 
             for (TicketDto ticketDto : showDto.tickets()){
                 show.addTicket(toEntity(ticketDto));
@@ -208,7 +219,7 @@ public class Mapper {
             ticket.setPrice(ticketDto.price());
             ticket.setStatus(ticketDto.status());
             ticket.setTimeOfShowing(ticketDto.timeOfShowing());
-            ticket.setSeat(ticketDto.seat());
+            ticket.setSeat(toEntity(ticketDto.seat()));
             return ticket;
     }
 
@@ -218,7 +229,7 @@ public class Mapper {
             timeSlot.setStartTime(timeSlotDto.startTime());
             timeSlot.setEndTime(timeSlotDto.endTime());
             timeSlot.setRole(timeSlotDto.role());
-            timeSlot.setEmployee(timeSlotDto.employee());
+            timeSlot.setEmployee(toEntity(timeSlotDto.employee()));
             return timeSlot;
     }
 
@@ -229,7 +240,7 @@ public class Mapper {
             user.setEmail(userDto.email());
             user.setPhoneNumber(userDto.phoneNumber());
             user.setAge(userDto.age());
-            user.setTimeSlot(userDto.timeSlot());
+            user.setTimeSlot(toEntity(userDto.timeSlot()));
             return user;
 
     }

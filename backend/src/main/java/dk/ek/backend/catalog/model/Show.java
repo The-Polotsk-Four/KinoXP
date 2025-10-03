@@ -21,11 +21,19 @@ public class Show {
     @OneToMany
     private List<Ticket> tickets;
 
-    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> tickets) {
+//    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> tickets) {
+//        this.id = id;
+//        this.movie = movie;
+//        this.timeOfShowing = timeOfShowing;
+//        this.hall = hall;
+//        this.tickets = tickets;
+//    }
+
+    //for testing purposes
+    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, List<Ticket> tickets) {
         this.id = id;
         this.movie = movie;
         this.timeOfShowing = timeOfShowing;
-        this.hall = hall;
         this.tickets = tickets;
     }
 

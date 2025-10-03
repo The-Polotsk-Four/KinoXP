@@ -21,7 +21,7 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private MovieStatus status;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany
     private List<Show> show;
 
     public Movie(Long id, String title, String description, String image, List<String> actors, MovieStatus status) {

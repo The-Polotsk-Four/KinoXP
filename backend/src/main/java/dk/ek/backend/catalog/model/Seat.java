@@ -2,27 +2,39 @@ package dk.ek.backend.catalog.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Seat {
 
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private int row;
+
+//    @Column(name="row_num")
+    private int rowNumber;
     private int seatNumber;
 
-    @OneToOne(mappedBy = "seat")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "seat")
+    private Set<Ticket> tickets;
 
     @ManyToOne
     private Hall hall;
 
-    public Seat(String id, int row, int seatNumber, Ticket ticket, Hall hall) {
+//    public Seat(String id, int row, int seatNumber, Ticket ticket, Hall hall) {
+//        this.id = id;
+//        this.row = row;
+//        this.seatNumber = seatNumber;
+//        this.ticket = ticket;
+//        this.hall = hall;
+//    }
+
+
+    public Seat(String id, int rowNumber, int seatNumber, Set<Ticket> tickets) {
         this.id = id;
-        this.row = row;
+        this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
-        this.ticket = ticket;
-        this.hall = hall;
+        this.tickets = tickets;
     }
 
     public Seat() {
@@ -36,12 +48,12 @@ public class Seat {
         this.id = id;
     }
 
-    public int getRow() {
-        return row;
+    public int getRowNumber() {
+        return rowNumber;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void setRowNumber(int row) {
+        this.rowNumber = row;
     }
 
     public int getSeatNumber() {
@@ -52,12 +64,17 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Set<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setTickets(Set<Ticket> ticket) {
+        this.tickets = ticket;
+    }
+
+    public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+        ticket.setSeat(this);
     }
 
     public Hall getHall() {

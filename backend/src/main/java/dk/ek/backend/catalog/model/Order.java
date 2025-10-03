@@ -3,10 +3,11 @@ package dk.ek.backend.catalog.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table (name = "orders")
 public class Order {
 
     @Id
@@ -17,13 +18,13 @@ public class Order {
     private int customerPhoneNumber;
     private LocalDateTime timeOfPurchase;
 
-    @OneToMany(mappedBy = "order")
-    private List<Ticket> tickets = new ArrayList<>();
+    @OneToMany
+    private Set<Ticket> tickets = new HashSet<>();
 
     public Order() {
     }
 
-    public Order(Long id, double price, String customerEmail, int customerPhoneNumber, LocalDateTime timeOfPurchase, List<Ticket> tickets) {
+    public Order(Long id, double price, String customerEmail, int customerPhoneNumber, LocalDateTime timeOfPurchase, Set<Ticket> tickets) {
         this.id = id;
         this.price = price;
         this.customerEmail = customerEmail;
@@ -82,11 +83,11 @@ public class Order {
         this.timeOfPurchase = timeOfPurchase;
     }
 
-    public List<Ticket> getTickets() {
+    public Set<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
 }

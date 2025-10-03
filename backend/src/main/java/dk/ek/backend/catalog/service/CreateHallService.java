@@ -35,7 +35,7 @@ public class CreateHallService{
                 Seat seatObj = new Seat();
                 seatObj.setId(hallname + " R" + rows + " S" + seat);
                 seatObj.setSeatNumber(seat);
-                seatObj.setRow(rows);
+                seatObj.setRowNumber(rows);
                 seatObj.setHall(smallHall);
                 seatRepository.save(seatObj);
             }
@@ -47,7 +47,7 @@ public class CreateHallService{
                 Seat seatObj = new Seat();
                 seatObj.setId(hallname2 + " R" + rows + " S" + seat);
                 seatObj.setSeatNumber(seat);
-                seatObj.setRow(rows);
+                seatObj.setRowNumber(rows);
                 seatObj.setHall(bigHall);
                 seatRepository.save(seatObj);
             }
