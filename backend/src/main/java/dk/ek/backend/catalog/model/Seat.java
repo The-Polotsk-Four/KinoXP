@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private int row;
     private int seatNumber;
 
@@ -16,7 +16,7 @@ public class Seat {
     @ManyToOne
     private Hall hall;
 
-    public Seat(Long id, int row, int seatNumber, Ticket ticket, Hall hall) {
+    public Seat(String id, int row, int seatNumber, Ticket ticket, Hall hall) {
         this.id = id;
         this.row = row;
         this.seatNumber = seatNumber;
@@ -27,11 +27,11 @@ public class Seat {
     public Seat() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
