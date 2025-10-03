@@ -45,7 +45,6 @@ public class Mapper {
                 user.getPhoneNumber(),
                 user.getAge()
         );
-
     }
 
         public static TMdbDto toDto(Movie movie){
@@ -57,8 +56,6 @@ public class Mapper {
                     movie.getActors(),
                     movie.getRuntime(),
                     movie.getTrailer()
-
             );
         }
-
 }

@@ -14,7 +14,7 @@ public class Movie {
     private String title;
     private String description;
     private String image;
-    private List<String> actors;
+    private List<String> actors
     private String trailer;
     private int runtime;
 
