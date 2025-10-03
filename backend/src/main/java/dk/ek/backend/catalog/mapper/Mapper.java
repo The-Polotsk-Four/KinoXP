@@ -52,9 +52,9 @@ public class Mapper {
                     movie.getId(),
                     movie.getTitle(),
                     movie.getDescription(),
-                    movie.getImage()
+                    movie.getImage(),
 
-            );
+                    movie.getActors());
         }
 
 }

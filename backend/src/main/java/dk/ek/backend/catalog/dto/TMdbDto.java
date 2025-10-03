@@ -14,6 +14,6 @@ public record TMdbDto (
 
 {
 
-    public TMdbDto(int id, String title, String description, String image) {
+    public TMdbDto(int id, String title, String description, String image, List<String> actors) {
     }
 }

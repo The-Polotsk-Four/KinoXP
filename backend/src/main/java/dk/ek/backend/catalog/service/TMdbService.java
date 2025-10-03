@@ -28,7 +28,7 @@ public class TMdbService {
     }
 
     private TMdbDto toDto(Movie movie) {
-        return new TMdbDto(movie.getId(), movie.getTitle(), movie.getDescription(),movie.getImage(),movie.getActors())
+        return new TMdbDto(movie.getId(), movie.getTitle(), movie.getDescription(),movie.getImage(),movie.getActors());
 }
 
 }
