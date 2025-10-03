@@ -32,7 +32,7 @@ public class UserService {
     }
 
     private UserDto toDto(User user) {
-        return new UserDto(user.getId(), user.getName(), user.getRole(), user.getEmail(), user.getPhoneNumber(), user.getAge());
+        return new UserDto(user.getId(), user.getName(), user.getUserRole(), user.getEmail(), user.getPhoneNumber(), user.getAge(), user.getTimeSlot());
     }
 
     private User toEntity(UserDto userDto) {
@@ -42,7 +42,7 @@ public class UserService {
         }
         user.setId(userDto.id());
         user.setName(userDto.name());
-        user.setRole(userDto.role());
+        user.setUserRole(userDto.role());
         user.setEmail(userDto.email());
         user.setPhoneNumber(userDto.phoneNumber());
         user.setAge(userDto.age());
@@ -60,7 +60,7 @@ public class UserService {
         User existing = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Bruger blev ikke fundet med det id " + id));
         existing.setName(userDto.name());
-        existing.setRole(userDto.role());
+        existing.setUserRole(userDto.role());
         existing.setEmail(userDto.email());
         existing.setPhoneNumber(userDto.phoneNumber());
         existing.setAge(userDto.age());
