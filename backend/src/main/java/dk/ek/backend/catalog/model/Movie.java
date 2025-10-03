@@ -10,12 +10,13 @@ public class Movie {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
     private String description;
     private String image;
     private List<String> actors;
     private String trailer;
+    private int runtime;
 
     @Enumerated(EnumType.STRING)
     private MovieStatus status;
@@ -23,7 +24,7 @@ public class Movie {
     @OneToMany
     private List<Show> show;
 
-    public Movie(int id, String title, String description, String image, List<String> actors, MovieStatus status, String trailer) {
+    public Movie(Long id, String title, String description, String image, List<String> actors, MovieStatus status, String trailer) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -31,6 +32,15 @@ public class Movie {
         this.actors = actors;
         this.status = status;
         this.trailer = trailer;
+        this.runtime = runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
+    public int getRuntime() {
+        return runtime;
     }
 
     public void setTrailer(String trailer) {
@@ -56,11 +66,11 @@ public class Movie {
     public Movie() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
