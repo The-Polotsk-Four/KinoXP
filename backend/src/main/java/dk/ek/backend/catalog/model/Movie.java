@@ -15,6 +15,7 @@ public class Movie {
     private String description;
     private String image;
     private List<String> actors;
+    private String trailer;
 
     @Enumerated(EnumType.STRING)
     private MovieStatus status;
@@ -22,13 +23,26 @@ public class Movie {
     @OneToMany
     private List<Show> show;
 
-    public Movie(int id, String title, String description, String image, List<String> actors, MovieStatus status) {
+    public Movie(int id, String title, String description, String image, List<String> actors, MovieStatus status, String trailer) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
         this.actors = actors;
         this.status = status;
+        this.trailer = trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public MovieStatus getStatus() {
+        return status;
     }
 
     public List<Show> getShow() {

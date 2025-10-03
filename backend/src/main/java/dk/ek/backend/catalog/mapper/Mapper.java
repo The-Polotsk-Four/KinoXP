@@ -1,13 +1,7 @@
 package dk.ek.backend.catalog.mapper;
 
-import dk.ek.backend.catalog.dto.SnackDto;
-import dk.ek.backend.catalog.dto.TicketDto;
-import dk.ek.backend.catalog.dto.TimeSlotDto;
-import dk.ek.backend.catalog.dto.UserDto;
-import dk.ek.backend.catalog.model.Snack;
-import dk.ek.backend.catalog.model.Ticket;
-import dk.ek.backend.catalog.model.TimeSlot;
-import dk.ek.backend.catalog.model.User;
+import dk.ek.backend.catalog.dto.*;
+import dk.ek.backend.catalog.model.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -50,6 +44,17 @@ public class Mapper {
                 user.getPhoneNumber(),
                 user.getAge()
         );
+
     }
+
+        public static TMdbDto toDto(Movie movie){
+            return new TMdbDto(
+                    movie.getId(),
+                    movie.getTitle(),
+                    movie.getDescription(),
+                    movie.getImage()
+
+            );
+        }
 
 }
