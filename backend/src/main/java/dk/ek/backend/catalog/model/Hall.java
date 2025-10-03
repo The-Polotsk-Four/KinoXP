@@ -10,10 +10,10 @@ public class Hall {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy ="hall")
     private List<Seat> seat;
 
-    @OneToMany
+    @OneToMany(mappedBy = "hall")
     private List<Show> show;
 
     public Hall(Long id, List<Seat> seat, List<Show> show) {

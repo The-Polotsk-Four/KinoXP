@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 public class Seat {
+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private int row;
     private int seatNumber;
 
-    @OneToOne
+    @OneToOne(mappedBy = "seat")
     private Ticket ticket;
 
     @ManyToOne
