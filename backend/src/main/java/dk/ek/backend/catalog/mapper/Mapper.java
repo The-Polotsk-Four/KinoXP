@@ -10,6 +10,23 @@ import java.util.List;
 @Component
 public class Mapper {
 
+
+    public static HallDto toDto(Hall hall){
+        List<SeatDto> seats = new ArrayList<>();
+        for (Seat seat : hall.getSeat()){
+            seats.add(toDto(seat));
+        }
+        List<ShowDto> shows = new ArrayList<>();
+        for (Show show : hall.getShow()){
+            shows.add(toDto(show));
+        }
+        return new HallDto(
+                hall.getId(),
+                seats,
+                shows
+        );
+    }
+
     public static MovieDto toDto(Movie movie) {
 
         List<ShowDto> shows = new ArrayList<>();

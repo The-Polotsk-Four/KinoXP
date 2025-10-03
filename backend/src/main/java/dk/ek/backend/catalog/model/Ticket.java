@@ -17,6 +17,9 @@ public class Ticket {
     @ManyToOne
     private Show show;
 
+    @ManyToOne
+    private Order order;
+
     @OneToOne
     private Seat seat;
 

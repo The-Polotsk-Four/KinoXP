@@ -17,7 +17,7 @@ public class Order {
     private int customerPhoneNumber;
     private LocalDateTime timeOfPurchase;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order")
     private List<Ticket> tickets = new ArrayList<>();
 
     public Order() {
