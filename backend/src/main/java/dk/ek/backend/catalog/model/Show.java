@@ -18,7 +18,7 @@ public class Show {
     @ManyToOne
     private Hall hall;
 
-    @OneToMany
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
 
 //    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> tickets) {
