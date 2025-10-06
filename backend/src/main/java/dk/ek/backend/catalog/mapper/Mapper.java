@@ -47,15 +47,26 @@ public class Mapper {
         );
     }
 
-        public static TMdbDto toDto(Movie movie){
-            return new TMdbDto(
-                    movie.getId(),
-                    movie.getTitle(),
-                    movie.getDescription(),
-                    movie.getImage(),
-                    movie.getActors(),
-                    movie.getRuntime(),
-                    movie.getTrailer()
-            );
-        }
+    public static Movie toEntity(MovieDto dto) {
+        Movie movie = new Movie();
+        movie.setTitle(dto.title());
+        movie.setYear(dto.year());
+        movie.setRuntime(dto.runtime());
+        movie.setPoster(dto.poster());
+        movie.setTrailer(dto.trailer());
+        movie.setActors(dto.actors());
+        return movie;
+    }
+
+    public MovieDto toDto(Movie movie) {
+        return new MovieDto(
+                movie.getTitle(),
+                movie.getYear(),
+                movie.getRuntime(),
+                movie.getPoster(),
+                movie.getTrailer(),
+                movie.getActors()
+        );
+    }
 }
+

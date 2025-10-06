@@ -7,16 +7,16 @@ import java.util.List;
 
 @Entity
 public class Movie {
-
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-    private String description;
-    private String image;
-    private List<String> actors
+    private String year;
+    private String runtime;
+    private String poster;
     private String trailer;
-    private int runtime;
+    private String actors;
 
     @Enumerated(EnumType.STRING)
     private MovieStatus status;
@@ -24,46 +24,20 @@ public class Movie {
     @OneToMany
     private List<Show> show;
 
-    public Movie(Long id, String title, String description, String image, List<String> actors, MovieStatus status, String trailer) {
+    public Movie(Long id, String title, String year, String runtime, String poster, String trailer, String actors, MovieStatus status, List<Show> show) {
         this.id = id;
         this.title = title;
-        this.description = description;
-        this.image = image;
+        this.year = year;
+        this.runtime = runtime;
+        this.poster = poster;
+        this.trailer = trailer;
         this.actors = actors;
         this.status = status;
-        this.trailer = trailer;
-        this.runtime = runtime;
-    }
-
-    public void setRuntime(int runtime) {
-        this.runtime = runtime;
-    }
-
-    public int getRuntime() {
-        return runtime;
-    }
-
-    public void setTrailer(String trailer) {
-        this.trailer = trailer;
-    }
-
-    public String getTrailer() {
-        return trailer;
-    }
-
-    public MovieStatus getStatus() {
-        return status;
-    }
-
-    public List<Show> getShow() {
-        return show;
-    }
-
-    public void setShow(List<Show> show) {
         this.show = show;
     }
 
     public Movie() {
+
     }
 
     public Long getId() {
@@ -82,35 +56,59 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getYear() {
+        return year;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public String getImage() {
-        return image;
+    public String getRuntime() {
+        return runtime;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
-    public List<String> getActors() {
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+
+    public String getActors() {
         return actors;
     }
 
-    public void setActors(List<String> actors) {
+    public void setActors(String actors) {
         this.actors = actors;
     }
 
-    public MovieStatus isStatus() {
+    public MovieStatus getStatus() {
         return status;
     }
 
     public void setStatus(MovieStatus status) {
         this.status = status;
+    }
+
+    public List<Show> getShow() {
+        return show;
+    }
+
+    public void setShow(List<Show> show) {
+        this.show = show;
     }
 }
