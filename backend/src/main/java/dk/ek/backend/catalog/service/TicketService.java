@@ -43,8 +43,8 @@ public class TicketService {
         ticket.setSeat(seat);
         ticket.setTimeOfShowing(show.getTimeOfShowing());
         ticket.setStatus(true);
-//        Vi skal finde en måde at beregne prisen og hvor den skal være
-//        ticket.setPrice();
+        // hardcoded ticket price 110 kr
+        ticket.setPrice(110);
 
         Ticket newTicket= ticketRepository.save(ticket);
 
