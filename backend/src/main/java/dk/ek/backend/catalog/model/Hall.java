@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Hall {
+public class Hall extends Movie {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
