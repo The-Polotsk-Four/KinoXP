@@ -11,7 +11,7 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name="row_num")
+    @Column(name="row_num")
     private int rowNumber;
     private int seatNumber;
 
