@@ -48,21 +48,7 @@ public class HallService {
         throw new RuntimeException("Hall not found with id: "+id);
         }
 
-//    public HallDto createHall(HallDto hallDto){
-//        Hall hall = Mapper.toEntity(hallDto);
-//
-//        for(Seat seat : hall.getSeat()){
-//            seatService.saveIfNotExists(seat);
-//        }
-//
-//        for(Show show : hall.getShow()){
-//            showService.saveIfNotExists(show);
-//        }
-//
-//        hall.setId(null);
-//
-//        return Mapper.toDto(hallRepository.save(hall));
-//    }
+
 
 
     }
