@@ -2,6 +2,8 @@ package dk.ek.backend.catalog.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table (name = "users")
 public class User {
@@ -19,10 +21,10 @@ public class User {
     private int phoneNumber;
     private int age;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private TimeSlot timeSlot;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<TimeSlot> timeSlot;
 
-    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, int age, TimeSlot timeSlot) {
+    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, int age, List<TimeSlot> timeSlot) {
         this.id = id;
         this.userRole = userRole;
         this.name = name;
@@ -36,11 +38,11 @@ public class User {
 
     }
 
-    public TimeSlot getTimeSlot() {
+    public List<TimeSlot> getTimeSlot() {
         return timeSlot;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
+    public void setTimeSlot(List<TimeSlot> timeSlot) {
         this.timeSlot = timeSlot;
     }
 
@@ -55,8 +57,6 @@ public class User {
     public String getName() {
         return name;
     }
-
-
 
     public String getEmail() {
         return email;
@@ -94,5 +94,13 @@ public class User {
         this.age = age;
     }
 
+    public void addTimeslot(TimeSlot timeslot){
+        this.timeSlot.add(timeslot);
+        timeslot.setUser(this);
+    }
 
+    public void removeTimeslot(TimeSlot timeSlot) {
+        this.timeSlot.remove(timeSlot);
+        timeSlot.setUser(null);
+    }
 }

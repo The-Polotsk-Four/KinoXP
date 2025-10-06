@@ -2,6 +2,8 @@ package dk.ek.backend.catalog.dto;
 
 import dk.ek.backend.catalog.model.UserRole;
 
+import java.util.List;
+
 public record UserDto(
         Long id,
         String name,
@@ -9,6 +11,6 @@ public record UserDto(
         String email,
         int phoneNumber,
         int age,
-        TimeSlotDto timeSlot
+        List<TimeSlotDto> timeSlots
 )
 {}
