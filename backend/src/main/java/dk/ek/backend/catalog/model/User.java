@@ -21,6 +21,7 @@ public class User {
     private UserRole userRole;
 
     private String name;
+    private String password;
 
     private String email;
     private int phoneNumber;
@@ -42,6 +43,14 @@ public class User {
 
     public User() {
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<TimeSlot> getTimeSlots() {
