@@ -66,7 +66,7 @@ public class Hall extends Movie {
         return show;
     }
 
-    public void setShow(List<ShowDto> show) {
+    public void setShow(List<Show> show) {
         this.show = show;
     }
 }

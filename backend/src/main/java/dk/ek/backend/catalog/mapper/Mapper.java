@@ -238,8 +238,6 @@ public class Mapper {
         movie.setPoster(movieDto.poster());
         movie.setTrailer(movieDto.trailer());
         movie.setActors(movieDto.actors());
-        movie.setShow(movieDto.show());
-
         for (ShowDto showDto : movieDto.show()){
             movie.addShow(toEntity(showDto));
         }

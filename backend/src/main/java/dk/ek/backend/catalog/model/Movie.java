@@ -52,9 +52,7 @@ public class Movie {
         return show;
     }
 
-    public void setShow(List<ShowDto> show) {
-        this.show = show;
-    }
+    public void setShow(List<Show> show) {this.show = show;}
 
     public Long getId() {
         return id;
