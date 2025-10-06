@@ -29,23 +29,6 @@ public class Mapper {
         );
     }
 
-    public static MovieDto toDto(Movie movie) {
-
-        List<ShowDto> shows = new ArrayList<>();
-        for (Show show : movie.getShow()) {
-            shows.add(toDto(show));
-        }
-
-        return new MovieDto(
-                movie.getId(),
-                movie.getTitle(),
-                movie.getDescription(),
-                movie.getImage(),
-                movie.getActors(),
-                movie.getStatus(),
-                shows
-        );
-    }
 
     public static OrderDto toDto(Order order) {
         Set<TicketDto> tickets = new HashSet<>();
@@ -247,4 +230,26 @@ public class Mapper {
 
 
 
+    public static Movie toEntity(MovieDto dto) {
+        Movie movie = new Movie();
+        movie.setTitle(dto.title());
+        movie.setYear(dto.year());
+        movie.setRuntime(dto.runtime());
+        movie.setPoster(dto.poster());
+        movie.setTrailer(dto.trailer());
+        movie.setActors(dto.actors());
+        return movie;
+    }
+
+    public MovieDto toDto(Movie movie) {
+        return new MovieDto(
+                movie.getTitle(),
+                movie.getYear(),
+                movie.getRuntime(),
+                movie.getPoster(),
+                movie.getTrailer(),
+                movie.getActors()
+        );
+    }
 }
+
