@@ -10,6 +10,6 @@ public record MovieDto(
         String trailer,
         String actors,
         Enum status,
-        List<dk.ek.backend.catalog.model.Show> show
+        List<ShowDto> show
 ) {}
 
