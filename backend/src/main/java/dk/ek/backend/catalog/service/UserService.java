@@ -28,7 +28,7 @@ public class UserService {
     public UserDto getUserById(Long id) {
         return userRepository.findById(id)
                 .map(Mapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Work not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
     private UserDto toDto(User user) {
@@ -65,7 +65,7 @@ public class UserService {
 
     public UserDto updateUser (Long id, UserDto userDto){
         User existing = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bruger blev ikke fundet med det id " + id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
         existing.setName(userDto.name());
         existing.setUserRole(userDto.role());
         existing.setEmail(userDto.email());
@@ -78,7 +78,7 @@ public class UserService {
 
     public void deleteUser (Long id){
         if (!userRepository.existsById(id)){
-            throw new RuntimeException("Bruger blev ikke fundet med det id " + id);
+            throw new RuntimeException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
     }
