@@ -118,7 +118,17 @@ public class Mapper {
                 toDto(user.getTimeSlot())
         );
     }
-
+    public static MovieDto toDto(Movie movie) {
+        return new MovieDto(
+                movie.getTitle(),
+                movie.getYear(),
+                movie.getRuntime(),
+                movie.getPoster(),
+                movie.getTrailer(),
+                movie.getActors(),
+                movie.getStatus(),
+                movie.getShow());
+    }
     public static Hall toEntity(HallDto hallDto){
             Hall hall= new Hall();
             hall.setId(hallDto.id());
@@ -130,21 +140,6 @@ public class Mapper {
                 hall.addShow(toEntity(showDto));
             }
             return hall;
-    }
-
-    public static Movie toEntity(MovieDto movieDto){
-            Movie movie = new Movie();
-            movie.setId(movieDto.id());
-            movie.setTitle(movieDto.title());
-            movie.setDescription(movieDto.description());
-            movie.setImage(movieDto.image());
-            movie.setActors(movieDto.actors());
-            movie.setStatus(movieDto.status());
-
-        for (ShowDto showDto : movieDto.show()){
-            movie.addShow(toEntity(showDto));
-        }
-        return movie;
     }
 
     public static Order toEntity(OrderDto orderDto){
@@ -238,18 +233,8 @@ public class Mapper {
         movie.setPoster(dto.poster());
         movie.setTrailer(dto.trailer());
         movie.setActors(dto.actors());
+        movie.setShow(dto.show());
         return movie;
-    }
-
-    public MovieDto toDto(Movie movie) {
-        return new MovieDto(
-                movie.getTitle(),
-                movie.getYear(),
-                movie.getRuntime(),
-                movie.getPoster(),
-                movie.getTrailer(),
-                movie.getActors()
-        );
     }
 }
 

@@ -1,8 +1,11 @@
 package dk.ek.backend.catalog.service;
 
 import dk.ek.backend.catalog.dto.MovieDto;
+import dk.ek.backend.catalog.dto.ShowDto;
 import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.model.Movie;
+import dk.ek.backend.catalog.model.MovieStatus;
+import dk.ek.backend.catalog.model.Show;
 import dk.ek.backend.catalog.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Map;
+
+import static dk.ek.backend.catalog.model.MovieStatus.COMING_SOON;
 
 
 @Service
@@ -94,6 +99,8 @@ public class MovieService {
         String year = String.valueOf(details.get("release_date")).split("-")[0];
         String runtime = details.get("runtime") != null ? details.get("runtime").toString() + " min" : "";
         String poster = "https://image.tmdb.org/t/p/w500" + details.get("poster_path");
+        Enum status = COMING_SOON;
+        List<ShowDto> show = null;
 
         return new MovieDto(
                 title,
@@ -101,8 +108,7 @@ public class MovieService {
                 runtime,
                 poster,
                 trailer,
-                actors
-        );
+                actors, status,show);
     }
 
 }

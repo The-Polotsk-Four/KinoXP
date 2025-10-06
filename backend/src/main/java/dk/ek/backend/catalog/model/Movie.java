@@ -1,7 +1,6 @@
 package dk.ek.backend.catalog.model;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.ToOne;
 
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class Movie {
     @OneToMany
     private List<Show> show;
 
+
     public Movie(Long id, String title, String year, String runtime, String poster, String trailer, String actors, MovieStatus status, List<Show> show) {
         this.id = id;
         this.title = title;
@@ -45,15 +45,14 @@ public class Movie {
         show.setMovie(null);
     }
 
+    public Movie() {}
+
     public List<Show> getShow() {
         return show;
     }
 
     public void setShow(List<Show> show) {
         this.show = show;
-    }
-
-    public Movie() {
     }
 
     public Long getId() {
@@ -111,4 +110,11 @@ public class Movie {
     public void setActors(String actors) {
         this.actors = actors;
     }
+
+    public MovieStatus getStatus() {
+        return status;
+    }
+    public void setStatus(MovieStatus status) {
+        this.status = status;}
+
 }
