@@ -7,6 +7,7 @@ import dk.ek.backend.catalog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,37 +32,36 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    private UserDto toDto(User user) {
-        return new UserDto(
-                user.getId(),
-                user.getName(),
-                user.getUserRole(),
-                user.getEmail(),
-                user.getPhoneNumber(),
-                user.getAge(),
-                Mapper.toDto(user.getTimeSlot()));
-    }
+//    private UserDto toDto(User user) {
+//        return new UserDto(
+//                user.getId(),
+//                user.getName(),
+//                user.getUserRole(),
+//                user.getEmail(),
+//                user.getPhoneNumber(),
+//                user.getAge(),
+//                Mapper.toDto(user.getTimeSlot()));
+//    }
 
-    private User toEntity(UserDto userDto) {
-        User user = new User();
-        if (userDto.id() != null) {
-            user.setId(userDto.id());
-        }
-        user.setId(userDto.id());
-        user.setName(userDto.name());
-        user.setUserRole(userDto.role());
-        user.setEmail(userDto.email());
-        user.setPhoneNumber(userDto.phoneNumber());
-        user.setAge(userDto.age());
-        return user;
-    }
-
+//    private User toEntity(UserDto userDto) {
+//        User user = new User();
+//        if (userDto.id() != null) {
+//            user.setId(userDto.id());
+//        }
+//        user.setId(userDto.id());
+//        user.setName(userDto.name());
+//        user.setUserRole(userDto.role());
+//        user.setEmail(userDto.email());
+//        user.setPhoneNumber(userDto.phoneNumber());
+//        user.setAge(userDto.age());
+//        return user;
+//    }
 
 
     public UserDto createUser(UserDto userDto){
-        User user = toEntity(userDto);
+        User user = Mapper.toEntity(userDto);
         User saved = userRepository.save(user);
-        return toDto(saved);
+        return Mapper.toDto(saved);
     }
 
     public UserDto updateUser (Long id, UserDto userDto){
@@ -74,7 +74,7 @@ public class UserService {
         existing.setAge(userDto.age());
 
         User updated = userRepository.save(existing);
-        return toDto(updated);
+        return Mapper.toDto(updated);
     }
 
     public void deleteUser (Long id){
@@ -84,4 +84,18 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User saveIfNotExist(User user) {
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+        if (optionalUser.isPresent()) {
+            if (optionalUser.get().getName().equals(user.getName())) {
+                return userRepository.save(optionalUser.get());
+            } else {
+                user.setId(null);
+                return userRepository.save(optionalUser.get());
+            }
+        } else {
+            user.setId(null);
+            return userRepository.save(optionalUser.get());
+        }
+    }
 }
