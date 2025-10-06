@@ -1,6 +1,13 @@
 package dk.ek.backend.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "users")
@@ -17,31 +24,32 @@ public class User {
 
     private String email;
     private int phoneNumber;
-    private int age;
+    private LocalDate age;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private TimeSlot timeSlot;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<TimeSlot> timeSlots = new HashSet<>();
 
-    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, int age, TimeSlot timeSlot) {
+    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, LocalDate age, Set<TimeSlot> timeSlots) {
         this.id = id;
         this.userRole = userRole;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.age = age;
-        this.timeSlot = timeSlot;
+        this.timeSlots = timeSlots;
     }
 
     public User() {
 
     }
 
-    public TimeSlot getTimeSlot() {
-        return timeSlot;
+    public Set<TimeSlot> getTimeSlots() {
+        return timeSlots;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeSlots(Set<TimeSlot> timeSlots) {
+        this.timeSlots = timeSlots;
     }
 
     public UserRole getUserRole() {
@@ -56,8 +64,6 @@ public class User {
         return name;
     }
 
-
-
     public String getEmail() {
         return email;
     }
@@ -66,7 +72,7 @@ public class User {
         return phoneNumber;
     }
 
-    public int getAge() {
+    public LocalDate getAge() {
         return age;
     }
 
@@ -90,9 +96,22 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAge(int age) {
+    public void setAge(LocalDate age) {
         this.age = age;
     }
 
+    public void addTimeslot(TimeSlot timeslot) {
+        this.timeSlots.add(timeslot);
+        timeslot.setUser(this);
+    }
 
+    public void removeTimeslot(TimeSlot timeSlot) {
+        this.timeSlots.remove(timeSlot);
+        timeSlot.setUser(null);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
