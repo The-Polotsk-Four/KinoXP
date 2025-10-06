@@ -2,6 +2,7 @@ package dk.ek.backend.catalog.dto;
 
 import dk.ek.backend.catalog.model.UserRole;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record UserDto(
@@ -10,7 +11,7 @@ public record UserDto(
         UserRole role,
         String email,
         int phoneNumber,
-        int age,
+        LocalDate age,
         List<TimeSlotDto> timeSlots
 )
 {}

@@ -2,6 +2,7 @@ package dk.ek.backend.catalog.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,12 @@ public class User {
 
     private String email;
     private int phoneNumber;
-    private int age;
+    private LocalDate age;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<TimeSlot> timeSlot;
 
-    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, int age, List<TimeSlot> timeSlot) {
+    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, LocalDate age, List<TimeSlot> timeSlot) {
         this.id = id;
         this.userRole = userRole;
         this.name = name;
@@ -66,7 +67,7 @@ public class User {
         return phoneNumber;
     }
 
-    public int getAge() {
+    public LocalDate getAge() {
         return age;
     }
 
@@ -90,7 +91,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAge(int age) {
+    public void setAge(LocalDate age) {
         this.age = age;
     }
 
