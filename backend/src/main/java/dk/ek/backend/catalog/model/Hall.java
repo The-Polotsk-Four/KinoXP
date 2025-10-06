@@ -1,5 +1,6 @@
 package dk.ek.backend.catalog.model;
 
+import dk.ek.backend.catalog.dto.ShowDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -65,7 +66,7 @@ public class Hall extends Movie {
         return show;
     }
 
-    public void setShow(List<Show> show) {
+    public void setShow(List<ShowDto> show) {
         this.show = show;
     }
 }

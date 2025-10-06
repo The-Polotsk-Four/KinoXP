@@ -119,6 +119,11 @@ public class Mapper {
         );
     }
     public static MovieDto toDto(Movie movie) {
+        List<ShowDto> shows = new ArrayList<>();
+        for (Show show : movie.getShow()) {
+            shows.add(toDto(show));
+        }
+
         return new MovieDto(
                 movie.getTitle(),
                 movie.getYear(),
@@ -127,7 +132,7 @@ public class Mapper {
                 movie.getTrailer(),
                 movie.getActors(),
                 movie.getStatus(),
-                movie.getShow());
+                shows);
     }
     public static Hall toEntity(HallDto hallDto){
             Hall hall= new Hall();
@@ -225,15 +230,21 @@ public class Mapper {
 
 
 
-    public static Movie toEntity(MovieDto dto) {
+    public static Movie toEntity(MovieDto movieDto) {
         Movie movie = new Movie();
-        movie.setTitle(dto.title());
-        movie.setYear(dto.year());
-        movie.setRuntime(dto.runtime());
-        movie.setPoster(dto.poster());
-        movie.setTrailer(dto.trailer());
-        movie.setActors(dto.actors());
-        movie.setShow(dto.show());
+        movie.setTitle(movieDto.title());
+        movie.setYear(movieDto.year());
+        movie.setRuntime(movieDto.runtime());
+        movie.setPoster(movieDto.poster());
+        movie.setTrailer(movieDto.trailer());
+        movie.setActors(movieDto.actors());
+        movie.setShow(movieDto.show());
+
+        for (ShowDto showDto : movieDto.show()){
+            movie.addShow(toEntity(showDto));
+        }
+
+
         return movie;
     }
 }

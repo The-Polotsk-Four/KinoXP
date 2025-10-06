@@ -28,9 +28,9 @@ public class MovieService {
     @Value("${tmdb.api.key}")
     private String apiKey;
 
-    public MovieService(MovieRepository movieRepository, Mapper Mapper) {
+    public MovieService(MovieRepository movieRepository, Mapper mapper) {
         this.movieRepository = movieRepository;
-        this.mapper = Mapper;
+        this.mapper = mapper;
     }
 
     public MovieDto searchMovieByTitleAndYear(String title, String year) {
