@@ -11,8 +11,6 @@ import java.util.Set;
 
 @Component
 public class Mapper {
-
-
     public static HallDto toDto(Hall hall){
         List<SeatDto> seats = new ArrayList<>();
         for (Seat seat : hall.getSeat()){
@@ -109,8 +107,8 @@ public class Mapper {
                 ticket.getPrice(),
                 ticket.isStatus(),
                 ticket.getTimeOfShowing(),
-                Mapper.toDto(ticket.getShow()),
-                Mapper.toDto(ticket.getSeat())
+                toDto(ticket.getShow()),
+                toDto(ticket.getSeat())
         );
     }
 
@@ -120,14 +118,13 @@ public class Mapper {
                 timeSlot.getDate(),
                 timeSlot.getStartTime(),
                 timeSlot.getEndTime(),
-                timeSlot.getRole(),
-                Mapper.toDto(timeSlot.getUser())
+                timeSlot.getRole()
         );
     }
 
     public static UserDto toDto(User user){
-        List<TimeSlotDto> timeSlots = new ArrayList<>();
-        for (TimeSlot timeSlot : user.getTimeSlot()) {
+        Set<TimeSlotDto> timeSlots = new HashSet<>();
+        for (var timeSlot : user.getTimeSlots()) {
             timeSlots.add(toDto(timeSlot));
         }
 
@@ -194,7 +191,7 @@ public class Mapper {
                 seat.addTicket(toEntity(ticketDto));
             }
 
-            seat.setHall(Mapper.toEntity(seatDto.hall()));
+            seat.setHall(toEntity(seatDto.hall()));
             return seat;
     }
 
@@ -235,7 +232,6 @@ public class Mapper {
             timeSlot.setStartTime(timeSlotDto.startTime());
             timeSlot.setEndTime(timeSlotDto.endTime());
             timeSlot.setRole(timeSlotDto.role());
-            timeSlot.setUser(toEntity(timeSlotDto.employee()));
             return timeSlot;
     }
 
@@ -246,13 +242,11 @@ public class Mapper {
             user.setEmail(userDto.email());
             user.setPhoneNumber(userDto.phoneNumber());
             user.setAge(userDto.age());
+
             for (TimeSlotDto timeSlotDto : userDto.timeSlots()) {
                 user.addTimeslot(toEntity(timeSlotDto));
             }
+
             return user;
-
     }
-
-
-
 }

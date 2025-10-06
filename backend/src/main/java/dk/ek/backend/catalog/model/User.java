@@ -1,9 +1,13 @@
 package dk.ek.backend.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "users")
@@ -22,29 +26,30 @@ public class User {
     private int phoneNumber;
     private LocalDate age;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<TimeSlot> timeSlot;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<TimeSlot> timeSlots = new HashSet<>();
 
-    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, LocalDate age, List<TimeSlot> timeSlot) {
+    public User(Long id, UserRole userRole, String name, String email, int phoneNumber, LocalDate age, Set<TimeSlot> timeSlots) {
         this.id = id;
         this.userRole = userRole;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.age = age;
-        this.timeSlot = timeSlot;
+        this.timeSlots = timeSlots;
     }
 
     public User() {
 
     }
 
-    public List<TimeSlot> getTimeSlot() {
-        return timeSlot;
+    public Set<TimeSlot> getTimeSlots() {
+        return timeSlots;
     }
 
-    public void setTimeSlot(List<TimeSlot> timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeSlots(Set<TimeSlot> timeSlots) {
+        this.timeSlots = timeSlots;
     }
 
     public UserRole getUserRole() {
@@ -95,13 +100,18 @@ public class User {
         this.age = age;
     }
 
-    public void addTimeslot(TimeSlot timeslot){
-        this.timeSlot.add(timeslot);
+    public void addTimeslot(TimeSlot timeslot) {
+        this.timeSlots.add(timeslot);
         timeslot.setUser(this);
     }
 
     public void removeTimeslot(TimeSlot timeSlot) {
-        this.timeSlot.remove(timeSlot);
+        this.timeSlots.remove(timeSlot);
         timeSlot.setUser(null);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

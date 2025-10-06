@@ -7,11 +7,13 @@ import dk.ek.backend.catalog.model.UserRole;
 import dk.ek.backend.catalog.repository.TimeSlotRepository;
 import dk.ek.backend.catalog.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+@Component
 public class RosterInitData implements CommandLineRunner {
 
     private final TimeSlotRepository timeSlotRepository;
@@ -24,6 +26,7 @@ public class RosterInitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         User christoffer = new User();
         christoffer.setName("Christoffer");
         christoffer.setPhoneNumber(44886622);
@@ -102,6 +105,5 @@ public class RosterInitData implements CommandLineRunner {
                 timeSlot05,
                 timeSlot06
         ));
-
     }
 }

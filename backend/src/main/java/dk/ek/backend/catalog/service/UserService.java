@@ -43,22 +43,22 @@ public class UserService {
 //                Mapper.toDto(user.getTimeSlot()));
 //    }
 
-    private User toEntity(UserDto userDto) {
-        User user = new User();
-        if (userDto.id() != null) {
-            user.setId(userDto.id());
-        }
-        user.setId(userDto.id());
-        user.setName(userDto.name());
-        user.setUserRole(userDto.role());
-        user.setEmail(userDto.email());
-        user.setPhoneNumber(userDto.phoneNumber());
-        user.setAge(userDto.age());
-        return user;
-    }
+//    private User toEntity(UserDto userDto) {
+//        User user = new User();
+//        if (userDto.id() != null) {
+//            user.setId(userDto.id());
+//        }
+//        user.setId(userDto.id());
+//        user.setName(userDto.name());
+//        user.setUserRole(userDto.role());
+//        user.setEmail(userDto.email());
+//        user.setPhoneNumber(userDto.phoneNumber());
+//        user.setAge(userDto.age());
+//        return user;
+//    }
 
     public UserDto createUser(UserDto userDto){
-        User user = toEntity(userDto);
+        User user = Mapper.toEntity(userDto);
         User saved = userRepository.save(user);
         return Mapper.toDto(saved);
     }

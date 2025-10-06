@@ -1,5 +1,6 @@
 package dk.ek.backend.catalog.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class TimeSlot {
     private EmployeeRole role;
 
     @ManyToOne
+    @JsonBackReference
     private User user;
 
     public TimeSlot() {
@@ -79,5 +81,16 @@ public class TimeSlot {
 
     public void setUser(User employee) {
         this.user = employee;
+    }
+
+    @Override
+    public String toString() {
+        return "TimeSlot{" +
+                ", date=" + date +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", role=" + role +
+                ", user=" + user +
+                '}';
     }
 }

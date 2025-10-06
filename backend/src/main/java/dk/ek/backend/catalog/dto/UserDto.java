@@ -4,6 +4,7 @@ import dk.ek.backend.catalog.model.UserRole;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public record UserDto(
         Long id,
@@ -12,6 +13,6 @@ public record UserDto(
         String email,
         int phoneNumber,
         LocalDate age,
-        List<TimeSlotDto> timeSlots
+        Set<TimeSlotDto> timeSlots
 )
 {}
