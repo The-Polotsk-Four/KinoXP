@@ -5,40 +5,6 @@ body {
     color: #eee;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #000;
-    padding: 15px 30px;
-}
-
-header img {
-    height: 50px;
-}
-
-nav ul {
-    align-content: start;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-    text-align: center;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #eee;
-    font-weight: bold;
-    transition: color 0.3s;
-    text-align: center;
-}
-
-nav ul li a:hover {
-    color: #ffcc00;
-}
-
 
 .indexText h1 {
     font-size: 3rem;
@@ -82,13 +48,3 @@ main {
     object-fit: fill;
 }
 
-footer {
-    background-color: #000;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-footer p {
-    margin: 5px 0;
-}

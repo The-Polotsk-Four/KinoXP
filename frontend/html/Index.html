@@ -4,28 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KinoXP Cinema</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/index.css" type="text/css">
+    <script src ="components/header.js" type="text/javascript" defer></script>
+    <script src="components/footer.js" type="text/javascript" defer></script>
 </head>
 <body>
-
-<header>
-    <img src="../css/img/logo.png" alt="Logo">
-    <nav>
-        <ul>
-            <li><a href="#">Hjem</a></li>
-            <li><a href="#">I biografen nu</a></li>
-            <li><a href="#">Kommer snart</a></li>
-            <li><a href="#">Biletter</a></li>
-            <li><a href="#">Kontakt</a></li>
-        </ul>
-    </nav>
-</header>
+<header-component></header-component>
 
 <section class="indexText">
     <h1>Welcome to KinoXP</h1>
     <p>Den ultimative biograf oplevelse</p>
 </section>
-
 <main>
     <h2>Now Showing</h2>
     <div class="movies">
@@ -44,10 +33,7 @@
     </div>
 </main>
 
-<footer>
-    <p>&copy; 2025 KinoXP Cinema</p>
-    <p> Kirkehelle 5, Vissenbjerg, DK 5492 | KinoXP@info.com </p>
-</footer>
+<footer-component></footer-component>
 
 </body>
 </html>
