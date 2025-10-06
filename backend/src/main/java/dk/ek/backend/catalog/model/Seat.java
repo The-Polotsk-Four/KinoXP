@@ -8,10 +8,10 @@ import java.util.Set;
 public class Seat {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//    @Column(name="row_num")
+    @Column(name="row_num")
     private int rowNumber;
     private int seatNumber;
 
@@ -30,7 +30,7 @@ public class Seat {
 //    }
 
 
-    public Seat(String id, int rowNumber, int seatNumber, Set<Ticket> tickets) {
+    public Seat(Long id, int rowNumber, int seatNumber, Set<Ticket> tickets) {
         this.id = id;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
@@ -40,11 +40,11 @@ public class Seat {
     public Seat() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
