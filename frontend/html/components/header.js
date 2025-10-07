@@ -112,7 +112,7 @@ class Header extends HTMLElement {
             <div class="popup-box">
                 <h2>Login</h2>
                 <form class="form-container" onsubmit="handleLogin(event)">
-                    <input class="form-input" type="text" placeholder="Username" required>
+                    <input class="form-input" type="email" placeholder="Email" required>
                     <input class="form-input" type="password" placeholder="Password" required>
                     <button class="btn-submit" type="submit">Login</button>
                 </form>
