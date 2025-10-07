@@ -4,11 +4,15 @@ import dk.ek.backend.catalog.dto.UserDto;
 import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.UserRepository;
 import dk.ek.backend.catalog.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,6 +37,22 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpSession session) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+
+        User user = userService.findByEmail(email).orElse(null);
+
+        if (user != null && user.getPassword().equals(password)) {
+            session.setAttribute("currentUser", user);
+            return ResponseEntity.ok(user);
+        } else {
+            Map<String, String> error = new HashMap<>();
+            error.put("message", "Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+        }
+    }
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
@@ -50,15 +70,15 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDto> deleteUser(@PathVariable Long id){
-        try {
-            userService.deleteUser(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            try {
+                userService.deleteUser(id);
+                return ResponseEntity.noContent().build();
+            } catch (RuntimeException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
         }
     }
-}
+

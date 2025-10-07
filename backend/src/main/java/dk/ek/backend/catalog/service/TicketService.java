@@ -1,6 +1,8 @@
 package dk.ek.backend.catalog.service;
 
 
+import dk.ek.backend.catalog.dto.TicketDto;
+import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.model.Seat;
 import dk.ek.backend.catalog.model.Show;
 import dk.ek.backend.catalog.model.Ticket;
@@ -10,6 +12,7 @@ import dk.ek.backend.catalog.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +30,7 @@ public class TicketService {
         this.seatRepository=seatRepository;
     }
 
-    public Ticket createTicket(Long showId, Long seatId){
+    public TicketDto createTicket(Long showId, Long seatId){
         Show show = showRepository.findById(showId)
                 .orElseThrow(()-> new RuntimeException("Cant find a show with id: "+showId));
 
@@ -59,24 +62,40 @@ public class TicketService {
         return !ticketRepository.existsByShowIdAndSeatId(showId, seatId);
     }
 
-    public List<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
+    public List<TicketDto> getAllTickets() {
+        List<TicketDto> ticketDtos = new ArrayList<>();
+        List<Ticket> tickets = ticketRepository.findAll();
+        for (Ticket ticket : tickets){
+            ticketDtos.add(Mapper.toDto(ticket));
+        }
+        return ticketDtos;
     }
 
-    public Ticket getTicketById(Long id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Ticket not found with id: " + id));
+    public TicketDto getTicketById(Long id) {
+        Optional<Ticket> ticket = ticketRepository.findById(id);
+        if (ticket.isPresent()){
+            return Mapper.toDto(ticket.get());
+        }
+        throw new RuntimeException("Cant find show with id: "+id);
     }
 
 
     public void deleteTicket(long id){
-        Ticket ticket = getTicketById(id);
-        Show show = ticket.getShow();
-
-        if (show!= null){
-            show.removeTicket(ticket);
-        }
         ticketRepository.deleteById(id);
+    }
+
+    public TicketDto updateTicket(Long id, TicketDto ticketDto){
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Show not found with id: "+id));
+        ticket.setStatus(ticketDto.status());
+        ticket.setTimeOfShowing(ticketDto.timeOfShowing());
+        ticket.setSeat(seatRepository.findById(ticketDto.seat().id())
+                .orElseThrow(()-> new RuntimeException("Cant find seat number")));
+
+        Ticket updatedTicket = ticketRepository.save(ticket);
+        return Mapper.toDto(updatedTicket);
+
+
     }
 
 
