@@ -1,6 +1,5 @@
 package dk.ek.backend.catalog.model;
 
-import dk.ek.backend.catalog.dto.ShowDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String year;
+    private String releaseYear;
     private String runtime;
     private String poster;
     private String trailer;
@@ -25,10 +24,10 @@ public class Movie {
     private List<Show> show;
 
 
-    public Movie(Long id, String title, String year, String runtime, String poster, String trailer, String actors, MovieStatus status, List<Show> show) {
+    public Movie(Long id, String title, String releaseYear, String runtime, String poster, String trailer, String actors, MovieStatus status, List<Show> show) {
         this.id = id;
         this.title = title;
-        this.year = year;
+        this.releaseYear = releaseYear;
         this.runtime = runtime;
         this.poster = poster;
         this.trailer = trailer;
@@ -70,12 +69,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getYear() {
-        return year;
+    public String getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setReleaseYear(String year) {
+        this.releaseYear = year;
     }
 
     public String getRuntime() {
