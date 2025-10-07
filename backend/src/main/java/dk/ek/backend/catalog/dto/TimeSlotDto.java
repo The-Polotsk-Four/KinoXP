@@ -9,5 +9,7 @@ public record TimeSlotDto(Long id,
                           LocalDate date,
                           LocalTime startTime,
                           LocalTime endTime,
-                          EmployeeRole role) {
+                          EmployeeRole role,
+                          UserDto user
+) {
 }
