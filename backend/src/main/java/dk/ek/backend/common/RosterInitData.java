@@ -79,7 +79,7 @@ public class RosterInitData implements CommandLineRunner {
         User sofus = new User();
         sofus.setName("Sofus");
         sofus.setAge(LocalDate.of(1997, 1, 1));
-        sofus.setEmail("Sofus@email.dk");
+        sofus.setEmail("Sofusersej@sledding.dk");
         sofus.setPassword("sofusersej");
         sofus.setUserRole(UserRole.USER);
 
