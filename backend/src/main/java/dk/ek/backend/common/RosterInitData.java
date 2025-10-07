@@ -62,6 +62,12 @@ public class RosterInitData implements CommandLineRunner {
         timeSlot06.setEndTime(LocalTime.of(23, 59));
         timeSlot06.setRole(EmployeeRole.OPERATOR);
 
+        TimeSlot timeSlot07 = new TimeSlot();
+        timeSlot07.setDate(LocalDate.of(2025, 10, 7));
+        timeSlot07.setStartTime(LocalTime.of(19, 0));
+        timeSlot07.setEndTime(LocalTime.of(23, 59));
+        timeSlot07.setRole(EmployeeRole.OPERATOR);
+
         User christoffer = new User();
         christoffer.setName("Christoffer");
         christoffer.setPhoneNumber(44886622);
@@ -102,7 +108,8 @@ public class RosterInitData implements CommandLineRunner {
                 timeSlot03,
                 timeSlot04,
                 timeSlot05,
-                timeSlot06
+                timeSlot06,
+                timeSlot07
         ));
     }
 }

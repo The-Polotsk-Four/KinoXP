@@ -72,9 +72,10 @@ public class TimeSlotService {
         timeSlotRepository.deleteById(id);
     }
 
-    public List<TimeSlotDto> getByDate(LocalDate date) {
+    public List<TimeSlotDto> getByDate(String date) {
+        LocalDate parsedDate = LocalDate.parse(date);
         List<TimeSlotDto> timeSlotDtos = new ArrayList<>();
-        List<TimeSlot> timeSlots = timeSlotRepository.findByDateIs(date);
+        List<TimeSlot> timeSlots = timeSlotRepository.findByDateIs(parsedDate);
 
         for (TimeSlot timeSlot : timeSlots) {
             timeSlotDtos.add(Mapper.toDto(timeSlot));

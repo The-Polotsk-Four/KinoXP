@@ -21,7 +21,7 @@ public class TimeSlotController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TimeSlotDto>> getTimeslots(@RequestParam(required = false)LocalDate date) {
+    public ResponseEntity<List<TimeSlotDto>> getTimeslots(@RequestParam(required = false) String date) {
         if (date != null) {
             return ResponseEntity.ok(timeSlotService.getByDate(date));
         }
@@ -35,6 +35,11 @@ public class TimeSlotController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TimeSlotDto>> searchAuthorsByName(@RequestParam String date) {
+        return ResponseEntity.ok(timeSlotService.getByDate(date));
     }
 
     @PostMapping("/{id}")

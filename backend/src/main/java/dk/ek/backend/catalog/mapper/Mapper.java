@@ -101,7 +101,6 @@ public class Mapper {
     }
 
     public static TimeSlotDto toDto(TimeSlot timeSlot) {
-        System.out.println("timeSlotToDto: " + timeSlot);
         if (timeSlot.getUser() == null) {
             return new TimeSlotDto(
                     timeSlot.getId(),
@@ -123,12 +122,6 @@ public class Mapper {
     }
 
     public static UserDto toDto(User user){
-//        Set<TimeSlotDto> timeSlots = new HashSet<>();
-//        for (var timeSlot : user.getTimeSlots()) {
-//            timeSlots.add(toDto(timeSlot));
-//        }
-        System.out.println("user toDto: " + user);
-
         return new UserDto(
                 user.getId(),
                 user.getName(),
