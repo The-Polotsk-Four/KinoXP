@@ -3,6 +3,7 @@ package dk.ek.backend.catalog.dto;
 import java.util.List;
 
 public record MovieDto(
+        Long id,
         String title,
         String year,
         String runtime,

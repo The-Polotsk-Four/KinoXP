@@ -15,17 +15,13 @@ public class Mapper {
 
     public static HallDto toDto(Hall hall){
         List<SeatDto> seats = new ArrayList<>();
-        for (Seat seat : hall.getSeat()){
-            seats.add(toDto(seat));
-        }
+
         List<ShowDto> shows = new ArrayList<>();
         for (Show show : hall.getShow()){
             shows.add(toDto(show));
         }
         return new HallDto(
-                hall.getId(),
-                seats,
-                shows
+                hall.getId()
         );
     }
 
@@ -56,7 +52,6 @@ public class Mapper {
                 seat.getId(),
                 seat.getRowNumber(),
                 seat.getSeatNumber(),
-                tickets,
                 toDto(seat.getHall())
         );
     }
@@ -70,6 +65,7 @@ public class Mapper {
         return new ShowDto(
                 show.getId(),
                 toDto(show.getMovie()),
+//                toDto(show.getMovie()),
                 show.getTimeOfShowing(),
                 toDto(show.getHall()),
                 tickets
@@ -92,7 +88,6 @@ public class Mapper {
                 ticket.getPrice(),
                 ticket.isStatus(),
                 ticket.getTimeOfShowing(),
-                toDto(ticket.getShow()),
                 toDto(ticket.getSeat())
         );
     }
@@ -130,8 +125,9 @@ public class Mapper {
         }
 
         return new MovieDto(
+                movie.getId(),
                 movie.getTitle(),
-                movie.getYear(),
+                movie.getReleaseYear(),
                 movie.getRuntime(),
                 movie.getPoster(),
                 movie.getTrailer(),
@@ -142,13 +138,6 @@ public class Mapper {
     public static Hall toEntity(HallDto hallDto){
             Hall hall= new Hall();
             hall.setId(hallDto.id());
-
-            for (SeatDto seatDto : hallDto.seat()){
-                hall.addSeat(toEntity(seatDto));
-            }
-            for (ShowDto showDto : hallDto.show()){
-                hall.addShow(toEntity(showDto));
-            }
             return hall;
     }
 
@@ -172,9 +161,9 @@ public class Mapper {
             seat.setRowNumber(seatDto.row());
             seat.setSeatNumber(seatDto.seatNumber());
 
-            for (TicketDto ticketDto: seatDto.ticket()) {
-                seat.addTicket(toEntity(ticketDto));
-            }
+//            for (TicketDto ticketDto: seatDto.ticket()) {
+//                seat.addTicket(toEntity(ticketDto));
+//            }
 
             seat.setHall(toEntity(seatDto.hall()));
             return seat;
@@ -240,8 +229,9 @@ public class Mapper {
 
     public static Movie toEntity(MovieDto movieDto) {
         Movie movie = new Movie();
+        movie.setId(movieDto.id());
         movie.setTitle(movieDto.title());
-        movie.setYear(movieDto.year());
+        movie.setReleaseYear(movieDto.year());
         movie.setRuntime(movieDto.runtime());
         movie.setPoster(movieDto.poster());
         movie.setTrailer(movieDto.trailer());

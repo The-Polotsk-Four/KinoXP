@@ -103,6 +103,7 @@ public class MovieService {
         List<ShowDto> show = null;
 
         return new MovieDto(
+                tmdbId,
                 title,
                 year,
                 runtime,
