@@ -4,8 +4,10 @@ import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.dto.UserDto;
 import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.UserRepository;
+import org.hibernate.jdbc.Work;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,15 +34,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    public UserDto login(String email, String password){
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        if (!user.getPassword().equals(password)) {
-            throw new RuntimeException("Invalid password");
-        }
 
-        return Mapper.toDto(user);
-    }
 
 //    private UserDto toDto(User user) {
 //        return new UserDto(
@@ -107,5 +101,13 @@ public class UserService {
             user.setId(null);
             return userRepository.save(optionalUser.get());
         }
+    }
+    public List<UserDto> findByEmail(String email){
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userRepository.findByEmailContainingIgnoreCase(email);
+        for (User user: users) {
+            userDtos.add(Mapper.toDto(user));
+        }
+        return userDtos;
     }
 }
