@@ -20,8 +20,13 @@ public class Mapper {
         for (Show show : hall.getShow()){
             shows.add(toDto(show));
         }
+        for (Seat seat : hall.getSeat()){
+            seats.add(toDto(seat));
+        }
+
         return new HallDto(
-                hall.getId()
+                hall.getId(),
+                seats
         );
     }
 
@@ -51,8 +56,7 @@ public class Mapper {
         return new SeatDto(
                 seat.getId(),
                 seat.getRowNumber(),
-                seat.getSeatNumber(),
-                toDto(seat.getHall())
+                seat.getSeatNumber()
         );
     }
 
@@ -164,8 +168,6 @@ public class Mapper {
 //            for (TicketDto ticketDto: seatDto.ticket()) {
 //                seat.addTicket(toEntity(ticketDto));
 //            }
-
-            seat.setHall(toEntity(seatDto.hall()));
             return seat;
     }
 

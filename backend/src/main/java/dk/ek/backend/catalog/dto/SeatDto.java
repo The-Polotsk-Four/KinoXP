@@ -2,5 +2,5 @@ package dk.ek.backend.catalog.dto;
 
 import java.util.Set;
 
-public record SeatDto(Long id, int row, int seatNumber, HallDto hall) {
+public record SeatDto(Long id, int row, int seatNumber) {
 }
