@@ -32,6 +32,16 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
+    public UserDto login(String email, String password){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return Mapper.toDto(user);
+    }
+
 //    private UserDto toDto(User user) {
 //        return new UserDto(
 //                user.getId(),
