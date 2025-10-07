@@ -19,14 +19,14 @@ public class CreateHallService{
         this.seatRepository = seatRepository;
     }
 
-//    @PostConstruct
-//    public void createNewHallsAndSeats(){
-//        if (hallRepository.count() >0){
-//            System.out.println("Halls already exist");
-//            return;
-//        }
-//        createTheaterHalls();
-//    }
+    @PostConstruct
+    public void createNewHallsAndSeats(){
+        if (hallRepository.count() >0){
+            System.out.println("Halls already exist");
+            return;
+        }
+        createTheaterHalls();
+    }
 
     public void createTheaterHalls() {
 

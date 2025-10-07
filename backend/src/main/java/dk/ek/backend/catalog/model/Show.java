@@ -59,8 +59,8 @@ public class Show {
         this.id = id;
     }
 
-    public Hall getMovie() {
-        return hall;
+    public Movie getMovie() {
+        return movie;
     }
 
     public void setMovie(Movie movie) {

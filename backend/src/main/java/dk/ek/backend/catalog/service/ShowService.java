@@ -78,7 +78,4 @@ public class ShowService {
     public void deleteShow(Long id ){
         showRepository.deleteById(id);
     }
-
-
-
 }

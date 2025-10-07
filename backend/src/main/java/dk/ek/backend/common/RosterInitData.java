@@ -26,35 +26,6 @@ public class RosterInitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        User christoffer = new User();
-        christoffer.setName("Christoffer");
-        christoffer.setPhoneNumber(44886622);
-        christoffer.setUserRole(UserRole.USER);
-
-        User gustav = new User();
-        gustav.setName("Gustav");
-        gustav.setAge(LocalDate.of(2001, 10, 8));
-        gustav.setUserRole(UserRole.USER);
-
-        User sofus = new User();
-        sofus.setName("Sofus");
-        sofus.setAge(LocalDate.of(1997, 1, 1));
-        sofus.setUserRole(UserRole.USER);
-
-        User tobias = new User();
-        tobias.setName("Tobias");
-        tobias.setAge(LocalDate.of(1996 ,2 ,14));
-        tobias.setEmail("tobias@email.dk");
-        tobias.setPhoneNumber(33778855);
-        tobias.setUserRole(UserRole.ADMIN);
-
-        userRepository.saveAll(List.of(
-                christoffer,
-                gustav,
-                sofus,
-                tobias));
-
         TimeSlot timeSlot01 = new TimeSlot();
         timeSlot01.setDate(LocalDate.of(2025, 10, 6));
         timeSlot01.setStartTime(LocalTime.of(12, 0));
@@ -91,11 +62,39 @@ public class RosterInitData implements CommandLineRunner {
         timeSlot06.setEndTime(LocalTime.of(23, 59));
         timeSlot06.setRole(EmployeeRole.OPERATOR);
 
-        christoffer.addTimeslot(timeSlot01);
-        gustav.addTimeslot(timeSlot02);
-        sofus.addTimeslot(timeSlot03);
-        tobias.addTimeslot(timeSlot04);
-        tobias.addTimeslot(timeSlot05);
+        User christoffer = new User();
+        christoffer.setName("Christoffer");
+        christoffer.setPhoneNumber(44886622);
+        christoffer.setUserRole(UserRole.USER);
+
+        User gustav = new User();
+        gustav.setName("Gustav");
+        gustav.setAge(LocalDate.of(2001, 10, 9));
+        gustav.setUserRole(UserRole.USER);
+
+        User sofus = new User();
+        sofus.setName("Sofus");
+        sofus.setAge(LocalDate.of(1997, 1, 1));
+        sofus.setUserRole(UserRole.USER);
+
+        User tobias = new User();
+        tobias.setName("Tobias");
+        tobias.setAge(LocalDate.of(1996 ,2 ,14));
+        tobias.setEmail("tobias@email.dk");
+        tobias.setPhoneNumber(33778855);
+        tobias.setUserRole(UserRole.ADMIN);
+
+        userRepository.saveAll(List.of(
+                christoffer,
+                gustav,
+                sofus,
+                tobias));
+
+        timeSlot01.addUser(christoffer);
+        timeSlot02.addUser(gustav);
+        timeSlot03.addUser(sofus);
+        timeSlot04.addUser(tobias);
+        timeSlot05.addUser(tobias);
 
         timeSlotRepository.saveAll(List.of(
                 timeSlot01,
