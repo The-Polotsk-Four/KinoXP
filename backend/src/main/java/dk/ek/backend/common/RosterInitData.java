@@ -65,22 +65,29 @@ public class RosterInitData implements CommandLineRunner {
         User christoffer = new User();
         christoffer.setName("Christoffer");
         christoffer.setPhoneNumber(44886622);
+        christoffer.setEmail("fodbold@gambling.dk");
+        christoffer.setPassword("gamblingersejt");
         christoffer.setUserRole(UserRole.USER);
 
         User gustav = new User();
         gustav.setName("Gustav");
         gustav.setAge(LocalDate.of(2001, 10, 9));
+        gustav.setEmail("Gustav@email.dk");
+        gustav.setPassword("larsloekke");
         gustav.setUserRole(UserRole.USER);
 
         User sofus = new User();
         sofus.setName("Sofus");
         sofus.setAge(LocalDate.of(1997, 1, 1));
+        sofus.setEmail("Sofus@email.dk");
+        sofus.setPassword("sofusersej");
         sofus.setUserRole(UserRole.USER);
 
         User tobias = new User();
         tobias.setName("Tobias");
         tobias.setAge(LocalDate.of(1996 ,2 ,14));
         tobias.setEmail("tobias@email.dk");
+        tobias.setPassword("Peter");
         tobias.setPhoneNumber(33778855);
         tobias.setUserRole(UserRole.ADMIN);
 

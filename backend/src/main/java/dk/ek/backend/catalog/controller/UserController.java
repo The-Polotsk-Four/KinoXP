@@ -19,11 +19,9 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -39,13 +37,12 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpSession session) {
         String email = credentials.get("email");
         String password = credentials.get("password");
 
-        User user = userRepository.findByEmail(email).orElse(null);
+        User user = userService.findByEmail(email).orElse(null);
 
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("currentUser", user);
@@ -55,15 +52,6 @@ public class UserController {
             error.put("message", "Invalid email or password");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
         }
-
-
-    }
-    @RequestMapping("*")
-    public ResponseEntity<Map<String, String>> handleUnknownUserRoute() {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", "Invalid user endpoint");
-        response.put("message", "The requested path does not exist.");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
     @PostMapping
@@ -81,7 +69,6 @@ public class UserController {
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-
 
     }
     @DeleteMapping("/{id}")
