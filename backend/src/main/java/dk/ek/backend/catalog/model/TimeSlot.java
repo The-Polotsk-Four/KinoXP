@@ -79,8 +79,18 @@ public class TimeSlot {
         return user;
     }
 
-    public void setUser(User employee) {
-        this.user = employee;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void addUser(User user) {
+        this.user = (user);
+        user.addUserToTimeSlot(this);
+    }
+
+    public void removeUser(User user) {
+        this.user = null;
+        user.removeSpecificTimeSlot(null);
     }
 
     @Override

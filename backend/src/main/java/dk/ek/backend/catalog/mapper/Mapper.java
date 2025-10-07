@@ -2,6 +2,8 @@ package dk.ek.backend.catalog.mapper;
 
 import dk.ek.backend.catalog.dto.*;
 import dk.ek.backend.catalog.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.Set;
 @Component
 public class Mapper {
 
+
+    private static final Logger log = LoggerFactory.getLogger(Mapper.class);
 
     public static HallDto toDto(Hall hall){
         List<SeatDto> seats = new ArrayList<>();
@@ -97,20 +101,33 @@ public class Mapper {
     }
 
     public static TimeSlotDto toDto(TimeSlot timeSlot) {
+        System.out.println("timeSlotToDto: " + timeSlot);
+        if (timeSlot.getUser() == null) {
+            return new TimeSlotDto(
+                    timeSlot.getId(),
+                    timeSlot.getDate(),
+                    timeSlot.getStartTime(),
+                    timeSlot.getEndTime(),
+                    timeSlot.getRole(),
+                    null
+            );
+        }
         return new TimeSlotDto(
                 timeSlot.getId(),
                 timeSlot.getDate(),
                 timeSlot.getStartTime(),
                 timeSlot.getEndTime(),
-                timeSlot.getRole()
+                timeSlot.getRole(),
+                toDto(timeSlot.getUser())
         );
     }
 
     public static UserDto toDto(User user){
-        Set<TimeSlotDto> timeSlots = new HashSet<>();
-        for (var timeSlot : user.getTimeSlots()) {
-            timeSlots.add(toDto(timeSlot));
-        }
+//        Set<TimeSlotDto> timeSlots = new HashSet<>();
+//        for (var timeSlot : user.getTimeSlots()) {
+//            timeSlots.add(toDto(timeSlot));
+//        }
+        System.out.println("user toDto: " + user);
 
         return new UserDto(
                 user.getId(),
@@ -118,8 +135,7 @@ public class Mapper {
                 user.getUserRole(),
                 user.getEmail(),
                 user.getPhoneNumber(),
-                user.getAge(),
-                timeSlots
+                user.getAge()
         );
     }
     public static MovieDto toDto(Movie movie) {
@@ -208,6 +224,7 @@ public class Mapper {
             timeSlot.setStartTime(timeSlotDto.startTime());
             timeSlot.setEndTime(timeSlotDto.endTime());
             timeSlot.setRole(timeSlotDto.role());
+            timeSlot.setUser(toEntity(timeSlotDto.user()));
             return timeSlot;
     }
 
@@ -219,14 +236,8 @@ public class Mapper {
             user.setPhoneNumber(userDto.phoneNumber());
             user.setAge(userDto.age());
 
-            for (TimeSlotDto timeSlotDto : userDto.timeSlots()) {
-                user.addTimeslot(toEntity(timeSlotDto));
-            }
-
             return user;
-
     }
-
 
 
     public static Movie toEntity(MovieDto movieDto) {
@@ -241,7 +252,6 @@ public class Mapper {
         for (ShowDto showDto : movieDto.show()){
             movie.addShow(toEntity(showDto));
         }
-
 
         return movie;
     }

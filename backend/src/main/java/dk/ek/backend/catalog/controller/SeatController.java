@@ -29,7 +29,7 @@ public class SeatController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getseatById(@PathVariable Long id){
+    public ResponseEntity getSeatById(@PathVariable Long id){
         try {
             return ResponseEntity.ok(seatService.getHallById(id));
         }

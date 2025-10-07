@@ -1,12 +1,9 @@
 package dk.ek.backend.catalog.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +24,6 @@ public class User {
     private LocalDate age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private Set<TimeSlot> timeSlots = new HashSet<>();
 
     public User(Long id, UserRole userRole, String name, String email, int phoneNumber, LocalDate age, Set<TimeSlot> timeSlots) {
@@ -100,14 +96,22 @@ public class User {
         this.age = age;
     }
 
-    public void addTimeslot(TimeSlot timeslot) {
+    public void addTimeSlot(TimeSlot timeslot) {
         this.timeSlots.add(timeslot);
         timeslot.setUser(this);
     }
 
-    public void removeTimeslot(TimeSlot timeSlot) {
+    public void addUserToTimeSlot(TimeSlot timeSlot) {
+        this.timeSlots.add(timeSlot);
+    }
+
+//    public void removeAllTimeSlots(TimeSlot timeSlot) {
+//        this.timeSlots.remove(timeSlot);
+//        timeSlot.setUser(null);
+//    }
+
+    public void removeSpecificTimeSlot(TimeSlot timeSlot) {
         this.timeSlots.remove(timeSlot);
-        timeSlot.setUser(null);
     }
 
     @Override
