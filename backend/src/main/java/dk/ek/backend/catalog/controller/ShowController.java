@@ -25,7 +25,7 @@ public class ShowController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getShowById(@PathVariable Long id){
+    public ResponseEntity<ShowDto> getShowById(@PathVariable Long id){
         try {
             return ResponseEntity.ok(showService.getShowById(id));
         }
