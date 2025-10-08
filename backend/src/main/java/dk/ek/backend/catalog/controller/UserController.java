@@ -20,39 +20,48 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers(){
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long id){
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.getUserById(id));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-//    @PostMapping("/login")
-//    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpSession session) {
-//        String email = credentials.get("email");
-//        String password = credentials.get("password");
-//
-//        User user = userService.findByEmail(email).orElse(null);
-//
-//        if (user != null && user.getPassword().equals(password)) {
-//            session.setAttribute("currentUser", user);
-//            return ResponseEntity.ok(user);
-//        } else {
-//            Map<String, String> error = new HashMap<>();
-//            error.put("message", "Invalid email or password");
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-//        }
-//    }
+
+    @GetMapping("/login")
+    public ResponseEntity<List> login(@RequestParam(required = false)String email, String password) {
+        return ResponseEntity.ok(userService.findByEmail(email));
+    }
+
+    @PostMapping("/login")
+    public String login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            HttpSession session,
+            RedirectAttributes redirectAttributes){
+
+        User user = (User) userService.findByEmail(email);
+
+        if (user != null && user.getPassword().equals(password)) {
+            session.setAttribute("loggedInUser", user);
+            return "redirect:/EmployeeIndex";
+        } else {
+            redirectAttributes.addFlashAttribute("error: ", "Invalid email or password");
+            return "redirect:/";
+        }
+
+    }
+
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
@@ -73,12 +82,11 @@ public class UserController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDto> deleteUser(@PathVariable Long id){
-            try {
-                userService.deleteUser(id);
-                return ResponseEntity.noContent().build();
-            } catch (RuntimeException e) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            }
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
+}
