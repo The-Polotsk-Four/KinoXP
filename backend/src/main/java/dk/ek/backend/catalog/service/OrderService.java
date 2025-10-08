@@ -91,4 +91,29 @@ public class OrderService {
     public void deleteOrder(Long id){
         orderRepository.deleteById(id);
     }
+
+    public OrderDto updateOrder(Long id, OrderDto orderDto){
+        Optional<Order> findOrder = orderRepository.findById(id);
+
+        if (findOrder.isEmpty()){
+            throw new RuntimeException("Cant find order with id: "+id);
+        }
+        Order orderToUpdate = findOrder.get();
+
+        orderToUpdate.setCustomerEmail(orderDto.customerEmail());
+        orderToUpdate.setCustomerPhoneNumber(orderDto.customerPhoneNumber());
+        orderToUpdate.setPrice(orderDto.price());
+        orderToUpdate.setTimeOfPurchase(orderDto.timeOfPurchase());
+
+        if (orderDto.tickets() != null) {
+            Set<Ticket> tickets = new HashSet<>();
+            for (TicketDto ticketDto : orderDto.tickets()) {
+                tickets.add(Mapper.toEntity(ticketDto));
+            }
+            orderToUpdate.setTickets(tickets);
+        }
+        Order updatedOrder = orderRepository.save(orderToUpdate);
+        return Mapper.toDto(updatedOrder);
+
+    }
 }

@@ -48,8 +48,24 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createNewOrder(quantity,order, showId,seatId));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id,
+                                                @RequestBody OrderDto orderDto){
+        try{
+            return ResponseEntity.ok(orderService.updateOrder(id, orderDto));
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
-
-
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+        try {
+            orderService.deleteOrder(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }
