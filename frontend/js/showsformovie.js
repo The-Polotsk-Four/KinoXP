@@ -26,8 +26,8 @@ async function fetchShows(){
 }
 
 function renderShows(shows) {
-    const table = document.querySelector("#showsTable");
-    table.innerHTML = ""; 
+    const tableBody = document.querySelector("#showsTableBody");
+    tableBody.innerHTML = ""; 
 
     shows.forEach(show => renderShow(show));
 }
