@@ -4,7 +4,7 @@ const saveButton = document.getElementById('saveButton');
 
 let currentMovie = null;
 
-// --- SEARCH MOVIE ---
+// Search movie
 searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -23,15 +23,15 @@ searchForm.addEventListener('submit', async (e) => {
         if (!res.ok) throw new Error("Movie not found");
         const movie = await res.json();
 
-        // Add dummy values to match MovieDto
-        currentMovie = {
+// Dummy data
+            currentMovie = {
             ...movie,
-            id: null,             // Backend will assign ID
-            status: "COMING_SOON",    // Default enum value
-            show: []              // Empty list
+            id: null,
+            status: "COMING_SOON",
+            show: []
         };
 
-        // Fill data in UI
+
         document.getElementById('poster').src = movie.poster;
         document.getElementById('movieTitle').textContent = movie.title;
         document.getElementById('movieYear').textContent = movie.year;
@@ -47,7 +47,7 @@ searchForm.addEventListener('submit', async (e) => {
     }
 });
 
-// --- SAVE MOVIE ---
+// Save movie
 saveButton.addEventListener('click', async () => {
     if (!currentMovie) {
         alert("No movie loaded!");
