@@ -20,10 +20,10 @@ public class Mapper {
     public static HallDto toDto(Hall hall){
         List<SeatDto> seats = new ArrayList<>();
 
-        List<ShowDto> shows = new ArrayList<>();
-        for (Show show : hall.getShow()){
-            shows.add(toDto(show));
-        }
+//        List<ShowDto> shows = new ArrayList<>();
+//        for (Show show : hall.getShow()){
+//            shows.add(toDto(show));
+//        }
         for (Seat seat : hall.getSeat()){
             seats.add(toDto(seat));
         }
@@ -53,9 +53,9 @@ public class Mapper {
 
     public static SeatDto toDto(Seat seat) {
         Set<TicketDto> tickets = new HashSet<>();
-        for (Ticket ticket : seat.getTickets()) {
-            tickets.add(toDto(ticket));
-        }
+//        for (Ticket ticket : seat.getTickets()) {
+//            tickets.add(toDto(ticket));
+//        }
 
         return new SeatDto(
                 seat.getId(),
