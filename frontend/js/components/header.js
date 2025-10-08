@@ -95,7 +95,7 @@ class Header extends HTMLElement {
         </style>
 
         <header>
-            <img src="../css/img/logo.png" alt="Logo">
+            <img src="../img/logo.png" alt="Logo">
             <nav>
                 <ul>
                     <li><a href="#">Hjem</a></li>
