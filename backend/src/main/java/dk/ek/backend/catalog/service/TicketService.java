@@ -55,8 +55,10 @@ public class TicketService {
         show.addTicket(newTicket);
         showRepository.save(show);
 
-        return newTicket;
+        return new ticket;
     }
+
+
 
     public boolean isSeatAvailable(Long showId, Long seatId){
         return !ticketRepository.existsByShowIdAndSeatId(showId, seatId);

@@ -43,6 +43,26 @@ public class UserController {
         return ResponseEntity.ok(userService.findByEmail(email));
     }
 
+    @PostMapping("/login")
+    public String login(
+            @RequestParam("email") String email,
+            @RequestParam("passwrod") String password,
+            HttpSession session,
+            RedirectAttributes redirectAttributes){
+
+        User user = (User) userService.findByEmail(email);
+
+        if (user != null && user.getPassword().equals(password)) {
+            session.setAttribute("loggedInUser", user);
+            return "redirect:/EmployeeNndex";
+        } else {
+            redirectAttributes.addFlashAttribute("error: ", "Invalid email or password");
+            return "redirect:/";
+        }
+
+    }
+
+
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
 
