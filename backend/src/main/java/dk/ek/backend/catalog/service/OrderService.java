@@ -41,6 +41,30 @@ public class OrderService {
         throw new RuntimeException("Cant find order with id: "+id);
     }
 
+    public List<OrderDto> getByCustomerEmail(String customerEmail){
+        List<Order> orders = orderRepository.findByCustomerEmail(customerEmail);
+        if (orders.isEmpty()){
+            throw new RuntimeException("Cant find order with id: "+customerEmail);
+        }
+        List<OrderDto> orderDtos = new ArrayList<>();
+        for (Order order : orders){
+            orderDtos.add(Mapper.toDto(order));
+        }
+        return orderDtos;
+    }
+
+    public List<OrderDto> getByCustomerPhoneNumber(int CustomerPhoneNumber){
+        List<Order> orders = orderRepository.findByCustomerPhoneNumber(CustomerPhoneNumber);
+        if (orders.isEmpty()){
+            throw new RuntimeException("Cant find order with id: "+CustomerPhoneNumber);
+        }
+        List<OrderDto> orderDtos = new ArrayList<>();
+        for (Order order : orders){
+            orderDtos.add(Mapper.toDto(order));
+        }
+        return orderDtos;
+    }
+
 
     public OrderDto createNewOrder(int quantity, OrderDto orderDto, Long showId, Long seatId) {
         double totalPrice = 0;
@@ -64,6 +88,7 @@ public class OrderService {
         return Mapper.toDto(savedOrder);
     }
 
-
-
+    public void deleteOrder(Long id){
+        orderRepository.deleteById(id);
+    }
 }
