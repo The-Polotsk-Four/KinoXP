@@ -1,5 +1,6 @@
 package dk.ek.backend.catalog.dto;
 
+import dk.ek.backend.catalog.model.MovieStatus;
 import java.util.List;
 
 public record MovieDto(
@@ -10,7 +11,6 @@ public record MovieDto(
         String poster,
         String trailer,
         String actors,
-        Enum status,
+        MovieStatus status,
         List<ShowDto> show
 ) {}
-

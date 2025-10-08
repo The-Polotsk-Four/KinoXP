@@ -113,8 +113,8 @@ public class MovieService {
         String year = String.valueOf(details.get("release_date")).split("-")[0];
         String runtime = details.get("runtime") != null ? details.get("runtime").toString() + " min" : "";
         String poster = "https://image.tmdb.org/t/p/w500" + details.get("poster_path");
-        Enum status = COMING_SOON;
-        List<ShowDto> show = null;
+        MovieStatus status = MovieStatus.COMING_SOON;
+            List<ShowDto> show = null;
 
         return new MovieDto(
                 tmdbId,
@@ -123,7 +123,9 @@ public class MovieService {
                 runtime,
                 poster,
                 trailer,
-                actors, status,show);
+                actors,
+                status,
+                show);
     }
 
 }

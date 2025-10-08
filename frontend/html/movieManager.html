@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find film</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+<header-component></header-component>
+
+<main>
+    <section class="indexText">
+        <h1>Find film</h1>
+        <p>Søg efter en film og tilføj den til databasen</p>
+    </section>
+
+    <div class="searchBox">
+        <form id="searchForm" class="form">
+            <input type="text" id="title" placeholder="Film titel" required>
+            <input type="text" id="year" placeholder="Udgivelses år">
+            <button type="submit" id="searchButton">Søg</button>
+        </form>
+    </div>
+
+    <div id="movieContainer" class="movie hidden">
+        <img id="poster" src="" alt="Poster">
+        <h3 id="movieTitle"></h3>
+        <p><strong>Udgivelses år:</strong> <span id="movieYear"></span></p>
+        <p><strong>Spille tid:</strong> <span id="runtime"></span></p>
+        <p><strong>Skuespillere:</strong> <span id="actors"></span></p>
+
+        <div class="trailer">
+            <a id="trailerLink" href="#" target="_blank">Se trailer</a>
+        </div>
+
+        <button id="saveButton">Gem film</button>
+    </div>
+</main>
+
+<footer-component></footer-component>
+
+</body>
+
+<script src="../js/movieManager.js"></script>
+<script src ="../js/components/header.js" type="text/javascript" defer></script>
+<script src="../js/components/footer.js" type="text/javascript" defer></script>
+</html>
