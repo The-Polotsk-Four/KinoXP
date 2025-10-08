@@ -60,6 +60,9 @@ function renderMovie (movie){
     const seeShowing=document.createElement("button");
     const movieId= "movie"+movie.id + "seeShowing";
     seeShowing.id= "id"+movieId;
+    seeShowing.addEventListener("click", () => {
+    window.location.href = `shows.html?movieId=${movie.id}`;
+});
     seeShowing.textContent="See showings";
     seeShowingCell.appendChild(seeShowing);
     row.appendChild(seeShowingCell);
