@@ -60,6 +60,11 @@ public class ShowController {
 
     }
 
+    @GetMapping("/movie/{movieId}")
+    public List<ShowDto> getShowsByMovie(@PathVariable Long movieId) {
+        return showService.getShowByMovieId(movieId);
+    }
+
 
 
 }

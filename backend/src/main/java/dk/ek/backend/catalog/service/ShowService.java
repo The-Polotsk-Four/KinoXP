@@ -48,6 +48,18 @@ public class ShowService {
         throw new RuntimeException("Cant find show with id: "+id);
     }
 
+    public List<ShowDto> getShowByMovieId(Long id){
+        List<Show> shows = showRepository.findByMovieId(id);
+        if(shows.isEmpty()){
+            throw new RuntimeException("cant find movie");
+        }
+        List<ShowDto> showDtos = new ArrayList<>();
+        for (Show show : shows){
+            showDtos.add(Mapper.toDto(show));
+        }
+        return showDtos;
+    }
+
     public ShowDto createShow(ShowDto showDto){
         Show show = new Show();
         show.setMovie(movieRepository.findById(showDto.movie().id())
