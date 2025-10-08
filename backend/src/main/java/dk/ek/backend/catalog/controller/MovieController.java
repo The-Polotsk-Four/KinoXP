@@ -1,9 +1,13 @@
 package dk.ek.backend.catalog.controller;
 
 import dk.ek.backend.catalog.dto.MovieDto;
+import dk.ek.backend.catalog.dto.ShowDto;
 import dk.ek.backend.catalog.model.Movie;
 import dk.ek.backend.catalog.service.MovieService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -14,6 +18,12 @@ public class MovieController {
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
+
+    @GetMapping
+    public ResponseEntity<List<MovieDto>> getAllShows(){
+        return ResponseEntity.ok(movieService.getAllMovies());
+    }
+
 
     //Seach for movie
     @GetMapping("/search/details")

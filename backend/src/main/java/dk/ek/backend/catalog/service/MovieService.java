@@ -1,8 +1,10 @@
 package dk.ek.backend.catalog.service;
 
+import dk.ek.backend.catalog.dto.HallDto;
 import dk.ek.backend.catalog.dto.MovieDto;
 import dk.ek.backend.catalog.dto.ShowDto;
 import dk.ek.backend.catalog.mapper.Mapper;
+import dk.ek.backend.catalog.model.Hall;
 import dk.ek.backend.catalog.model.Movie;
 import dk.ek.backend.catalog.model.MovieStatus;
 import dk.ek.backend.catalog.model.Show;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +35,17 @@ public class MovieService {
         this.movieRepository = movieRepository;
         this.mapper = mapper;
     }
+
+    public List<MovieDto> getAllMovies(){
+        List<MovieDto> movieDtos = new ArrayList<>();
+        List<Movie> movies = movieRepository.findAll();
+        for (Movie movie : movies){
+            movieDtos.add(Mapper.toDto(movie));
+        }
+        return movieDtos;
+    }
+
+
 
     public MovieDto searchMovieByTitleAndYear(String title, String year) {
         try {
