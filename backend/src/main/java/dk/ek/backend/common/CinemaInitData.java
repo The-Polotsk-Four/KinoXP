@@ -50,7 +50,7 @@ public class CinemaInitData implements CommandLineRunner {
         movie1.setTitle("The Matrix");
         movie1.setReleaseYear("1999");
         movie1.setRuntime("136m");
-        movie1.setPoster("https://example.com/posters/matrix.jpg");
+        movie1.setPoster("https://m.media-amazon.com/images/I/51ISve-1n1S._UF1000,1000_QL80_.jpg");
         movie1.setTrailer("https://youtu.be/m8e-FF8MsqU");
         movie1.setActors("Keanu Reeves, Carrie-Anne Moss");
         movie1.setStatus(MovieStatus.AIRING);
@@ -59,7 +59,7 @@ public class CinemaInitData implements CommandLineRunner {
         movie2.setTitle("Interstellar");
         movie2.setReleaseYear("2014");
         movie2.setRuntime("169m");
-        movie2.setPoster("https://example.com/posters/interstellar.jpg");
+        movie2.setPoster("https://static.posters.cz/image/750/23157.jpg");
         movie2.setTrailer("https://youtu.be/zSWdZVtXT7E");
         movie2.setActors("Matthew McConaughey, Anne Hathaway");
         movie2.setStatus(MovieStatus.AIRING);
