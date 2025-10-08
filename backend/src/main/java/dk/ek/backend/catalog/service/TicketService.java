@@ -55,10 +55,8 @@ public class TicketService {
         show.addTicket(newTicket);
         showRepository.save(show);
 
-        return new ticket;
+        return Mapper.toDto(newTicket);
     }
-
-
 
     public boolean isSeatAvailable(Long showId, Long seatId){
         return !ticketRepository.existsByShowIdAndSeatId(showId, seatId);
