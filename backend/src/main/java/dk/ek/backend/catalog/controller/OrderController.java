@@ -20,15 +20,17 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderDto>> getOrders(@RequestParam(required = false) String customerEmail,
-                                                    @RequestParam(required = false) Integer customerPhoneNumber){
-        if (customerEmail!=null){
+    public ResponseEntity<List<OrderDto>> getOrders(
+            @RequestParam(value = "customerEmail", required = false) String customerEmail,
+            @RequestParam(value = "customerPhoneNumber", required = false) Integer customerPhoneNumber) {
+        if (customerEmail != null) {
             return ResponseEntity.ok(orderService.getByCustomerEmail(customerEmail));
         } else if (customerPhoneNumber != null) {
             return ResponseEntity.ok(orderService.getByCustomerPhoneNumber(customerPhoneNumber));
         }
         return ResponseEntity.ok(orderService.getAllOrders());
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrderById(Long id){
