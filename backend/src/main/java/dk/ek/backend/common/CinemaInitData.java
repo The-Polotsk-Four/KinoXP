@@ -40,8 +40,8 @@ public class CinemaInitData implements CommandLineRunner {
         hall2 = hallRepository.save(hall2);
 
         // helper to create seats for a hall
-        List<Seat> hall1Seats = createSeatsForHall(hall1, 21, 13); // 5 rows x 8 seats
-        List<Seat> hall2Seats = createSeatsForHall(hall2, 26, 17); // 4 rows x 6 seats
+        List<Seat> hall1Seats = createSeatsForHall(hall1, 21, 13);
+        List<Seat> hall2Seats = createSeatsForHall(hall2, 26, 17);
         seatRepository.saveAll(hall1Seats);
         seatRepository.saveAll(hall2Seats);
 
