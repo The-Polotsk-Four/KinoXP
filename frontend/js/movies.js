@@ -58,6 +58,10 @@ function renderMovie (movie){
     const seeShowingCell= document.createElement("td");
     seeShowingCell.classList.add("movieShowing");
     const seeShowing=document.createElement("button");
+    seeShowing.addEventListener("click", () => {
+    window.location.href = `shows.html?movieId=${movie.id}`;
+});
+
     const movieId= "movie"+movie.id + "seeShowing";
     seeShowing.id= "id"+movieId;
     seeShowing.textContent="See showings";
@@ -65,7 +69,4 @@ function renderMovie (movie){
     row.appendChild(seeShowingCell);
 
     document.querySelector("#movieTable").append(row);
-
-
-
 }
