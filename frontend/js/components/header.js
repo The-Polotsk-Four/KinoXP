@@ -95,15 +95,15 @@ class Header extends HTMLElement {
         </style>
 
         <header>
-            <img src="../img/logo.png" alt="Logo">
+            <img src="/img/logo.png" alt="Logo">
             <nav>
                 <ul>
-                    <li><a href="index.html">Hjem</a></li>
-                    <li><a href="#">Snack Udvalg</a></li>
-                    <li><a href="shows.html">I biografen nu</a></li>
+                    <li><a href="/html/index.html">Hjem</a></li>
+                    <li><a href="/html/viewSnacks.html">Snack Udvalg</a></li>
+                    <li><a href="/html/shows.html">I biografen nu</a></li>
                     <li><a href="#">Kommer snart</a></li>
                     <li><a href="#">Billetter</a></li>
-                    <li><a href="contact-info.html">Kontakt</a></li>
+                    <li><a href="/html/contact-info.html">Kontakt</a></li>
                     <li><button class="login-btn" onclick="togglePopup()">Login</button></li>
                 </ul>
             </nav>

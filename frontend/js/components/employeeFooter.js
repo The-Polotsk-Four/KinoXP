@@ -12,7 +12,7 @@ class Footer extends HTMLElement{
     text-align: center;
     padding: 20px;
     margin-top: 40px;
-     position: fixed;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -31,4 +31,4 @@ footer p {
     }
 }
 
-customElements.define('footer-component', Footer)
+customElements.define('employee-footer', Footer)
