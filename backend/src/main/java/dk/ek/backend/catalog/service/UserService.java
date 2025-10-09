@@ -110,4 +110,9 @@ public class UserService {
         }
         return userDtos;
     }
-}
+
+    public User getUserByEmailEntity(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+    }
+

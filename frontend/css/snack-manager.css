@@ -1,0 +1,86 @@
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+form#snackForm {
+    background-color: #2b2b2b;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+form#snackForm input {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 10px;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+form#snackForm input:focus {
+    outline: none;
+    border-color: #00aaff;
+    background-color: #444;
+}
+
+form#snackForm button {
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+form#snackForm button:hover {
+    background-color: #008fcc;
+    transform: scale(1.03);
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #e0e0e0;
+}
+
+#snackList {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+#snackList li {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#snackList li:hover {
+    background-color: #353535;
+    transform: translateY(-2px);
+}

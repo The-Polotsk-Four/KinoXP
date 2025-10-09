@@ -95,15 +95,15 @@ class Header extends HTMLElement {
         </style>
 
         <header>
-            <img src="../img/logo.png" alt="Logo">
+            <img src="/img/logo.png" alt="Logo">
             <nav>
                 <ul>
-                    <li><a href="index.html">Hjem</a></li>
-                    <li><a href="#">Snack Udvalg</a></li>
-                    <li><a href="shows.html">I biografen nu</a></li>
+                    <li><a href="/html/index.html">Hjem</a></li>
+                    <li><a href="/html/viewSnacks.html">Snack Udvalg</a></li>
+                    <li><a href="/html/shows.html">I biografen nu</a></li>
                     <li><a href="#">Kommer snart</a></li>
                     <li><a href="#">Billetter</a></li>
-                    <li><a href="contact-info.html">Kontakt</a></li>
+                    <li><a href="/html/contact-info.html">Kontakt</a></li>
                     <li><button class="login-btn" onclick="togglePopup()">Login</button></li>
                 </ul>
             </nav>
@@ -138,17 +138,15 @@ window.handleLogin = async function(event) {
     const password = event.target.querySelector('input[type="password"]').value;
 
     try {
-        const response = await fetch("http://localhost:8080/api/users/login",{
+        const response = await fetch("http://localhost:8080/api/users/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({email, password})
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ email, password })
         });
 
         if (response.ok) {
-            const user = await response.json();
-            alert(`Welcome ${user.name}!`);
+            alert("Login successful!");
             togglePopup();
-            localStorage.setItem("user", JSON.stringify(user));
 
             const loginBtn = document.querySelector(".login-btn");
             if (loginBtn) {
@@ -165,6 +163,7 @@ window.handleLogin = async function(event) {
             const message = await response.text();
             alert("Login failed: " + message);
         }
+
     } catch (error) {
         console.error("Error:", error);
         alert("Server error. Could not connect")

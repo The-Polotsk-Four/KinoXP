@@ -1,0 +1,147 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #313333;
+    color: #e4e4e4;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 700px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.indexText {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.indexText h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.indexText p {
+    color: #ffffff;
+}
+
+.searchBox {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form input {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    width: 200px;
+    transition: border-color 0.2s ease;
+}
+
+.form input:focus {
+    border-color: #0077ff;
+}
+
+.form button {
+    background: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.form button:hover {
+    background: #005fcc;
+}
+
+.movie {
+    background: #4a4545;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.movie.hidden {
+    display: none;
+}
+
+.movie img {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    margin-bottom: 1rem;
+}
+
+.movie h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.movie p {
+    margin: 0.3rem 0;
+    color: #ffffff;
+}
+
+.trailer {
+    margin-top: 1rem;
+}
+
+.trailer a {
+    text-decoration: none;
+    color: #0077ff;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.trailer a:hover {
+    color: #005fcc;
+}
+
+#saveButton {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s ease;
+}
+
+#saveButton:hover {
+    background: #218838;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+    .form input {
+        width: 100%;
+    }
+
+    .movie img {
+        width: 100%;
+        max-width: 250px;
+    }
+

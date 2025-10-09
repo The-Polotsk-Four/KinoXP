@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
+<script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/employee-header-and-footer.css">
+    <link rel="stylesheet" href="../css/employeeCss.css">
     <link rel="stylesheet" href="../css/snack-manager.css">
+
 
     <title>Snack manager</title>
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo">
-    <h1>Velkommen til Snack manager</h1>
-</header>
+<employee-header></employee-header>
 
 <form id="snackForm">
     <input type="text" id="name" placeholder="Snack name" required>
@@ -24,9 +25,7 @@
 <h2>All Snacks</h2>
 <ul id="snackList"></ul>
 
-<script src="app.js"></script>
-<footer>
-    <p>2025 KinoXP</p>
-</footer>
+
+<employee-footer></employee-footer>
 </body>
 </html>

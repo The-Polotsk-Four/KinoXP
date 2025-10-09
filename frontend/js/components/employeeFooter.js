@@ -7,7 +7,7 @@ class Footer extends HTMLElement{
         this.innerHTML =`
 
         <style>
-        footer {
+         footer {
     background-color: #000;
     text-align: center;
     padding: 20px;
@@ -31,4 +31,4 @@ footer p {
     }
 }
 
-customElements.define('footer-component', Footer)
+customElements.define('employee-footer', Footer)
