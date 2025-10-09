@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" href="../css/employeeCss.css">
-<link rel="stylesheet" href="../css/employee-header-and-footer.css">
-<script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
-<script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
 
 <head>
     <meta charset="UTF-8">
@@ -14,11 +10,16 @@
           media="prefers-color-scheme: light">
     <link rel="icon" type="image/x-icon" href="../img/kinoXP-logo-favicon-white.png"
           media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="../css/employee-css.css">
+    <link rel="stylesheet" href="../css/employee-header-and-footer.css">
+    <link rel="stylesheet" href="../css/roster.css">
+    <script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
+    <script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
     <script defer src="../js/roster.js"></script>
 </head>
 <body>
-
 <employee-header></employee-header>
+
 <h1>Vagtplan</h1>
 <input type="date" id="date"/>
     <table id="rosterTable">
@@ -36,10 +37,6 @@
         </tbody>
     </table>
 
-
-
-
 <employee-footer></employee-footer>
-
 </body>
 </html>
