@@ -7,15 +7,15 @@ class Footer extends HTMLElement{
         this.innerHTML =`
 
         <style>
-        footer {
+         footer {
     background-color: #000;
     text-align: center;
     padding: 20px;
-    margin-top: 40px;
-    position: fixed;
+    margin-top: 20px;
     left: 0;
-    bottom: 0;
-    width: 100%;
+    bottom: 0px;
+    top: auto;
+    width: auto;
 }
 
 footer p {
