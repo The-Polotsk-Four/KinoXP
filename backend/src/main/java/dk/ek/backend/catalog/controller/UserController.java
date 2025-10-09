@@ -2,17 +2,13 @@ package dk.ek.backend.catalog.controller;
 
 import dk.ek.backend.catalog.dto.UserDto;
 import dk.ek.backend.catalog.model.User;
-import dk.ek.backend.catalog.repository.UserRepository;
 import dk.ek.backend.catalog.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -44,22 +40,21 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(
+    public ResponseEntity<?> login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
-            HttpSession session,
-            RedirectAttributes redirectAttributes){
+            HttpSession session){
 
-        User user = (User) userService.findByEmail(email);
-
-        if (user != null && user.getPassword().equals(password)) {
-            session.setAttribute("loggedInUser", user);
-            return "redirect:/EmployeeIndex";
-        } else {
-            redirectAttributes.addFlashAttribute("error: ", "Invalid email or password");
-            return "redirect:/";
+        User user = userService.getUserByEmailEntity(email);
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        }
+        if (!user.getPassword().equals(password)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
 
+        session.setAttribute("loggedInUser", user);
+        return ResponseEntity.ok("Login successful");
     }
 
 
