@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 const showUrl = "http://localhost:8080/api/shows/";
 const showId = new URLSearchParams(window.location.search).get("showId");
-let seatArr=[];
+
 
 async function initApp(){
     console.log("loaded");
@@ -11,9 +11,6 @@ async function initApp(){
     
 
     bookings = await fetchBookings();
-    let seatArr = bookings.seat.push;
-    console.log(bookings.seat.id.length);
-    
 
     console.log(bookings);
     console.log(bookings.hall.id);
@@ -23,31 +20,46 @@ async function initApp(){
 
 
 
-function renderSeatId(value, seat){
-    const cell = document.createElement("td");
-    cell.textContent= value===seat;
-    return cell
-}
 
 
 
 
-function renderSeats(bookings){
-    
-    if (bookings.hall.id===1){
-        console.log("hall 1");
-        for(let i=1; i<13; i++){
-            const row = document.createElement("tr"+i);
-            for (let x=1; x<21; x++){
-                row.appendChild(renderSeatId(bookings.seat.id));
+
+function renderSeats(bookings) {
+    const table = document.getElementById("seat-table");
+    // table.innerHTML = "";
+
+    const seats = bookings.hall.seats;
+
+    const maxRow = Math.max(...seats.map(s => s.row));
+    const maxCol = Math.max(...seats.map(s => s.seatNumber));
+
+    for (let r = 1; r <= maxRow; r++) {
+        const rowEl = document.createElement("tr");
+        const rowSeats = seats.filter(s => s.row === r);
+
+        const labelCell = document.createElement("td");
+        labelCell.textContent = `${r}`;
+        labelCell.style.fontWeight = "bold"; 
+        rowEl.appendChild(labelCell);
+
+        for (let c = 1; c <= maxCol; c++) {
+            const seat = rowSeats.find(s => s.seatNumber === c);
+            const cell = document.createElement("td");
+
+            if (seat) {
+                cell.textContent = seat.seatNumber; 
+                cell.dataset.seatId = seat.id;
             }
+            rowEl.appendChild(cell);
         }
 
-    } else{
-        console.log("hall 2");
+        table.appendChild(rowEl);
     }
-
 }
+
+
+
 
 
 async function fetchBookings(){
