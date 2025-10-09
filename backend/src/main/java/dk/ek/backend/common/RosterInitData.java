@@ -29,13 +29,13 @@ public class RosterInitData implements CommandLineRunner {
         TimeSlot timeSlot01 = new TimeSlot();
         timeSlot01.setDate(LocalDate.of(2025, 10, 6));
         timeSlot01.setStartTime(LocalTime.of(12, 0));
-        timeSlot01.setEndTime(LocalTime.of(20, 59));
+        timeSlot01.setEndTime(LocalTime.of(19, 59));
         timeSlot01.setRole(EmployeeRole.SALE);
 
         TimeSlot timeSlot02 = new TimeSlot();
         timeSlot02.setDate(LocalDate.of(2025, 10, 6));
         timeSlot02.setStartTime(LocalTime.of(12, 0));
-        timeSlot02.setEndTime(LocalTime.of(16, 59));
+        timeSlot02.setEndTime(LocalTime.of(15, 59));
         timeSlot02.setRole(EmployeeRole.SALE);
 
         TimeSlot timeSlot03 = new TimeSlot();
@@ -52,19 +52,19 @@ public class RosterInitData implements CommandLineRunner {
 
         TimeSlot timeSlot05 = new TimeSlot();
         timeSlot05.setDate(LocalDate.of(2025, 10, 6));
-        timeSlot05.setStartTime(LocalTime.of(21, 0));
+        timeSlot05.setStartTime(LocalTime.of(20, 0));
         timeSlot05.setEndTime(LocalTime.of(23, 59));
         timeSlot05.setRole(EmployeeRole.SALE);
 
         TimeSlot timeSlot06 = new TimeSlot();
         timeSlot06.setDate(LocalDate.of(2025, 10, 6));
-        timeSlot06.setStartTime(LocalTime.of(19, 0));
+        timeSlot06.setStartTime(LocalTime.of(18, 0));
         timeSlot06.setEndTime(LocalTime.of(23, 59));
         timeSlot06.setRole(EmployeeRole.OPERATOR);
 
         TimeSlot timeSlot07 = new TimeSlot();
         timeSlot07.setDate(LocalDate.of(2025, 10, 7));
-        timeSlot07.setStartTime(LocalTime.of(19, 0));
+        timeSlot07.setStartTime(LocalTime.of(18, 0));
         timeSlot07.setEndTime(LocalTime.of(23, 59));
         timeSlot07.setRole(EmployeeRole.OPERATOR);
 

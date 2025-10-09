@@ -6,7 +6,7 @@ class Header extends HTMLElement {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: #000;
+                background-color: #17181b;
                 padding: 15px 30px;
             }
 

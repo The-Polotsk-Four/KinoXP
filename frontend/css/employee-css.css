@@ -5,11 +5,9 @@ body, h1, p {
 }
 
 body {
-
     font-family: Arial, sans-serif;
     line-height: 1.5;
     background-color: #353333;
-    color: #333;
     text-align: center;
 }
 

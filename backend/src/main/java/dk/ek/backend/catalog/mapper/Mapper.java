@@ -214,10 +214,13 @@ public class Mapper {
     public static TimeSlot toEntity(TimeSlotDto timeSlotDto){
             TimeSlot timeSlot = new TimeSlot();
             timeSlot.setId(timeSlotDto.id());
+            timeSlot.setDate(timeSlotDto.date());
             timeSlot.setStartTime(timeSlotDto.startTime());
             timeSlot.setEndTime(timeSlotDto.endTime());
             timeSlot.setRole(timeSlotDto.role());
-            timeSlot.setUser(toEntity(timeSlotDto.user()));
+            if (timeSlotDto.user() != null) {
+                timeSlot.setUser(toEntity(timeSlotDto.user()));
+            }
             return timeSlot;
     }
 

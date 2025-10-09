@@ -20,22 +20,31 @@
 <body>
 <employee-header></employee-header>
 
-<h1>Vagtplan</h1>
-<input type="date" id="date"/>
-    <table id="rosterTable">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>date</th>
-            <th>start</th>
-            <th>end</th>
-            <th>role</th>
-            <th>employee</th>
-        </tr>
-        </thead>
-        <tbody id="rosterTableBody">
-        </tbody>
-    </table>
+<main>
+    <div class="roster">
+        <h1>Vagtplan</h1>
+        <div class="data-table">
+            <h2>DATE</h2>
+            <input type="date" id="date"/>
+            <div class="table">
+                <table id="rosterTable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>date</th>
+                        <th>start</th>
+                        <th>end</th>
+                        <th>role</th>
+                        <th>employee</th>
+                    </tr>
+                    </thead>
+                    <tbody id="rosterTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
 
 <employee-footer></employee-footer>
 </body>

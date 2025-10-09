@@ -3,19 +3,20 @@ package dk.ek.backend.catalog.service;
 import dk.ek.backend.catalog.dto.TimeSlotDto;
 import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.model.TimeSlot;
-import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.TimeSlotRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class TimeSlotService {
 
+    private static final Logger log = LoggerFactory.getLogger(TimeSlotService.class);
     private final TimeSlotRepository timeSlotRepository;
 
     public TimeSlotService(TimeSlotRepository timeSlotRepository) {
@@ -82,5 +83,9 @@ public class TimeSlotService {
         }
 
         return timeSlotDtos;
+    }
+
+    public void createTimeSotsForDay(LocalDate date) {
+
     }
 }
