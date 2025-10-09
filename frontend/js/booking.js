@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
 const showUrl = "http://localhost:8080/api/shows/";
+const orderUrl = "http://localhost:8080/api/orders";
 const showId = new URLSearchParams(window.location.search).get("showId");
+const selectedSeats = new Set();
 
 
 async function initApp(){
@@ -11,6 +13,8 @@ async function initApp(){
     
 
     bookings = await fetchBookings();
+    document.querySelector("#orderForm").addEventListener("submit", createBooking)
+
 
     console.log(bookings);
     console.log(bookings.hall.id);
@@ -18,16 +22,45 @@ async function initApp(){
     renderSeats(bookings);
 }
 
+async function createBooking(e){
+    e.preventDefault();
+    console.log("clicked");
+    const form = document.querySelector("#orderForm");
+
+    const newOrder = {
+        customerPhoneNumber: form.phone.value,
+        customerEmail: form.email.value,
+        amountOfSeats: Array.from(selectedSeats)
+    };
 
 
+    const seatIdsParam = Array.from(selectedSeats).map(id => `seatId=${id}`).join("&");
 
+    const resp = await fetch(`${orderUrl}?showId=${showId}&${seatIdsParam}`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newOrder)
+});
+    if (!resp.ok){
+        console.error("Error in creating order");
+        return;
+    }
+    const data = await resp.json();
+    console.log("Order created: "+data);
 
+    form.reset();
+
+    selectedSeats.clear();
+
+    return data;
+}
 
 
 
 function renderSeats(bookings) {
     const table = document.getElementById("seat-table");
-    // table.innerHTML = "";
 
     const seats = bookings.hall.seats;
 
@@ -48,8 +81,19 @@ function renderSeats(bookings) {
             const cell = document.createElement("td");
 
             if (seat) {
-                cell.textContent = seat.seatNumber; 
+                cell.textContent = seat.seatNumber;
                 cell.dataset.seatId = seat.id;
+
+                cell.addEventListener("click", () => {
+                    if (selectedSeats.has(seat.id)) {
+                        selectedSeats.delete(seat.id);
+                        cell.classList.remove("selected");
+                    } else {
+                        selectedSeats.add(seat.id);
+                        cell.classList.add("selected");
+                    }
+                    console.log("Selected seats:", Array.from(selectedSeats));
+                });
             }
             rowEl.appendChild(cell);
         }
@@ -57,10 +101,6 @@ function renderSeats(bookings) {
         table.appendChild(rowEl);
     }
 }
-
-
-
-
 
 async function fetchBookings(){
     const resp = await fetch(showUrl+showId);
