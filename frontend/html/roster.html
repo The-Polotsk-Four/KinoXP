@@ -27,10 +27,12 @@
     <div class="roster">
         <h1>Vagtplan</h1>
         <div class="data-table">
-            <h2>DATE</h2>
-            <input type="date" id="date"/>
+            <div class="date">
+                <h2 id="date-title"></h2>
+                <input type="date" id="date"/>
+            </div>
             <div class="table">
-                <table id="rosterTable">
+                <table id="roster-table">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -41,13 +43,14 @@
                         <th>employee</th>
                     </tr>
                     </thead>
-                    <tbody id="rosterTableBody">
+                    <tbody id="roster-table-body">
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </main>
+
 <employee-footer></employee-footer>
 </body>
 

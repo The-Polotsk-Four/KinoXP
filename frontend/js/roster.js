@@ -27,12 +27,19 @@ async function fetchRoster() {
     }
     // console.log('roster fetched');
     roster = await response.json();
+    renderDateTitle(formattedDate);
     await createTimeSlotsForDate(formattedDate);
     return roster;
 }
 
+function renderDateTitle(formattedDate) {
+    const dateTitle = document.querySelector('#date-title');
+    dateTitle.innerHTML = formattedDate;
+
+}
+
 function renderRoster() {
-    const tableBody = document.querySelector('#rosterTableBody');
+    const tableBody = document.querySelector('#roster-table-body');
     // console.log('tableBody innerHTML: ' + tableBody.innerHTML);
     tableBody.innerHTML = '';
 
@@ -49,7 +56,7 @@ function renderTimeSlot(timeSlot) {
     row.appendChild(renderCell(timeSlot.role));
     row.appendChild(renderCell(renderUser(timeSlot.user)));
     
-    document.querySelector('#rosterTableBody').appendChild(row);
+    document.querySelector('#roster-table-body').appendChild(row);
 
 }
 
