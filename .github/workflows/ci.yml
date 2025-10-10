@@ -17,7 +17,7 @@ jobs:
         run: docker build -t app:test .
 
       - name: Run cd Docker container
-        run: |
+        run: cd ./backend |
           # Run the container in detached mode
           docker run -d -p 8080:8080 --name test-container app:test
           
