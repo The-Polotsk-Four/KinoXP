@@ -123,7 +123,7 @@ class Header extends HTMLElement {
     }
 }
 
-customElements.define('employee-component', Header);
+customElements.define('employee-header', Header);
 
 window.togglePopup = function() {
 const overlay = document.getElementById('popupOverlay');
