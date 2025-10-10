@@ -51,6 +51,7 @@ public class ShowController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteShow(@PathVariable Long id){
+        System.out.println("delete");
         try {
             showService.deleteShow(id);
             return ResponseEntity.noContent().build();

@@ -71,16 +71,19 @@ public class CinemaInitData implements CommandLineRunner {
         // 3) Create Shows linked to movies and halls
         LocalDateTime now = LocalDateTime.now();
         Show show1 = new Show();
+        show1.setCancelled(false);
         show1.setMovie(movie1);
         show1.setHall(hall1);
         show1.setTimeOfShowing(now.plusHours(2));
 
         Show show2 = new Show();
+        show2.setCancelled(false);
         show2.setMovie(movie1);
         show2.setHall(hall2);
         show2.setTimeOfShowing(now.plusDays(1).withHour(18).withMinute(30));
 
         Show show3 = new Show();
+        show3.setCancelled(false);
         show3.setMovie(movie2);
         show3.setHall(hall1);
         show3.setTimeOfShowing(now.plusDays(2).withHour(20).withMinute(0));

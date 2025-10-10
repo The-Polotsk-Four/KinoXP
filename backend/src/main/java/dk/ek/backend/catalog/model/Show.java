@@ -3,6 +3,7 @@ package dk.ek.backend.catalog.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,10 @@ public class Show {
     @ManyToOne
     private Hall hall;
 
+    private boolean cancelled = false;
+
     @OneToMany(mappedBy = "show", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
 //    public Show(Long id, Movie movie, LocalDateTime timeOfShowing, Hall hall, List<Ticket> tickets) {
 //        this.id = id;
@@ -39,6 +42,14 @@ public class Show {
     }
 
     public Show() {
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 
     public void addTicket(Ticket ticket){
