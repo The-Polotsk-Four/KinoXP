@@ -66,11 +66,11 @@ public class OrderService {
     }
 
 
-    public OrderDto createNewOrder(int quantity, OrderDto orderDto, Long showId, Long seatId) {
+    public OrderDto createNewOrder(OrderDto orderDto, Long showId, Set<Long> seatids) {
         double totalPrice = 0;
         Set<Ticket> tickets = new HashSet<>();
 
-        for (int i = 0; i < quantity; i++) {
+        for (Long seatId : seatids) {
             TicketDto ticketDto = ticketService.createTicket(showId, seatId);
             Ticket ticket = Mapper.toEntity(ticketDto);
             tickets.add(ticket);
@@ -87,6 +87,7 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
         return Mapper.toDto(savedOrder);
     }
+
 
     public void deleteOrder(Long id){
         orderRepository.deleteById(id);

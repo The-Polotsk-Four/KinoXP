@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -42,12 +43,11 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<OrderDto> createOrder(@RequestParam int quantity,
-                                                @RequestBody OrderDto order,
+    @PostMapping
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto order,
                                                 @RequestParam Long showId,
-                                                @RequestParam Long seatId){
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createNewOrder(quantity,order, showId,seatId));
+                                                @RequestParam Set<Long> seatId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createNewOrder(order, showId,seatId));
     }
 
     @PutMapping("/{id}")
