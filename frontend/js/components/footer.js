@@ -6,6 +6,7 @@ class Footer extends HTMLElement{
     connectedCallback(){
         this.innerHTML =`
 
+<<<<<<< HEAD
         <style>
         footer {
     background-color: #17181b;
@@ -22,6 +23,8 @@ footer p {
     margin: 5px 0;
 }
 </style>
+=======
+>>>>>>> employeeheader
 
 <footer>
     <p>&copy; 2025 KinoXP Cinema</p>

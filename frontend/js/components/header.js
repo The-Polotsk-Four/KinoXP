@@ -5,6 +5,7 @@ class Header extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
+<<<<<<< HEAD
         <style>
             header {
                 display: flex;
@@ -90,32 +91,22 @@ class Header extends HTMLElement {
             .btn-close-popup { margin-top: 12px; background: #e74c3c; color: #fff; }
         </style>
 
+=======
+        
+>>>>>>> employeeheader
         <header>
             <img src="/img/logo.png" alt="Logo">
             <nav>
                 <ul>
-                    <li><a href="/html/index.html">Hjem</a></li>
-                    <li><a href="/html/viewSnacks.html">Snack Udvalg</a></li>
-                    <li><a href="/html/shows.html">I biografen nu</a></li>
+                    <li><a href="../html/index.html">Hjem</a></li>
+                    <li><a href="../html/viewSnacks.html">Snack Udvalg</a></li>
+                    <li><a href="../html/shows.html">I biografen nu</a></li>
                     <li><a href="#">Kommer snart</a></li>
                     <li><a href="#">Billetter</a></li>
-                    <li><a href="/html/contact-info.html">Kontakt</a></li>
-                    <li><button class="login-btn" onclick="togglePopup()">Login</button></li>
+                    <li><a href="../html/contact-info.html">Kontakt</a></li>
                 </ul>
             </nav>
         </header>
-
-        <div id="popupOverlay" class="overlay-container">
-            <div class="popup-box">
-                <h2>Login</h2>
-                <form class="form-container" onsubmit="handleLogin(event)">
-                    <input class="form-input" type="email" placeholder="Email" required>
-                    <input class="form-input" type="password" placeholder="Password" required>
-                    <button class="btn-submit" type="submit">Login</button>
-                </form>
-                <button class="btn-close-popup" onclick="togglePopup()">Close</button>
-            </div>
-        </div>
         `;
     }
 }

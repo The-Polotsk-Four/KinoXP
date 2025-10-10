@@ -8,6 +8,10 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.5;
     background-color: #353333;
+<<<<<<< HEAD:frontend/css/employee-css.css
+=======
+    color: white;
+>>>>>>> employeeheader:frontend/css/employeeCss.css
     text-align: center;
 }
 

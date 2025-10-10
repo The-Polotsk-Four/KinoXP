@@ -6,6 +6,7 @@ class Footer extends HTMLElement{
     connectedCallback(){
         this.innerHTML =`
 
+<<<<<<< HEAD
         <style>
          footer {
     background-color: #17181b;
@@ -23,6 +24,9 @@ footer p {
 }
 </style>
 
+=======
+      
+>>>>>>> employeeheader
 <footer>
     <p>&copy; 2025 KinoXP Cinema</p>
     <p> Kirkehelle 5, Vissenbjerg, DK 5492 | KinoXP@info.com </p>
