@@ -11,7 +11,7 @@ class Header extends HTMLElement {
                 <ul>
                     <li><a href="../html/index.html">Hjem</a></li>
                     <li><a href="../html/viewSnacks.html">Snack Udvalg</a></li>
-                    <li><a href="../html/shows.html">I biografen nu</a></li>
+                    <li><a href="../html/movies.html">I biografen nu</a></li>
                     <li><a href="#">Kommer snart</a></li>
                     <li><a href="#">Billetter</a></li>
                     <li><a href="../html/contact-info.html">Kontakt</a></li>
