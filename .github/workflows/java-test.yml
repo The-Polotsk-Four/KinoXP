@@ -1,5 +1,4 @@
-name: Java test
-
+name: Java test with caching
 on:
   push:
     branches:
@@ -21,6 +20,13 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: maven-${{ runner.os }}-
 
       - name: Run tests
         run: cd ./backend && mvn test
