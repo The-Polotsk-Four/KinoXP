@@ -13,7 +13,40 @@ async function initApp(){
 
     renderShows(shows);
 
+    document.querySelector("#createShowForm").addEventListener("submit", createShow);
 
+
+}
+
+async function createShow(e){
+    e.preventDefault();
+    
+    console.log("clicked");
+
+    const form= e.target;
+    const show= {
+        hall: { id: parseInt(form.hall.value) },
+        timeOfShowing: form.time.value,
+        movie: { id: parseInt(movieId) } 
+    }
+
+    const resp = await fetch("http://localhost:8080/api/shows",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(show)
+    });
+
+    if (!resp.ok){
+        console.error("Error creating show");
+    }
+
+    const data = await resp.json();
+
+    form.reset();
+    refreshPage();
+    return data;
 }
 
 async function fetchShows(){

@@ -33,9 +33,22 @@
       </tbody>
     </table>
   </div>
-  <div id="create booking">
 
-  </div>  
+  <div id="createShow">
+    <form id="createShowForm">
+      <label for="hall">Hall:</label>
+      <!-- <input type="number" id="hall" name="hall" min="1" max="2" required /> -->
+       <select name="hall" id="hall">
+        <option value="1">Lille sal</option>
+        <option value="2">Stor sal</option>
+       </select>
+  
+      <label for="time">Date & Time:</label>
+      <input type="datetime-local" id="time" name="time" />
+  
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 </div>
 
 <employee-footer></employee-footer>
