@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showings</title>
+
+    <link rel="stylesheet" href="../css/employee-header-and-footer.css">
+    <link rel="stylesheet" href="../css/employee-css.css">
+    <script defer src="../js/employeeShowsForMovie.js"></script>
+    <script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
+    <script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
+</head>
+<body>
+<employee-header></employee-header>
+
+  <h1 id="movieTitle">Showings</h1>
+
+<div>
+  <div id="tableOfShows">
+    <table id="showsTable">
+      <thead>
+        <tr>
+          <th>Show ID</th>
+          <th>Time of Showing</th>
+          <th>Hall ID</th>
+          <th>Available Seats</th>
+          <th>Action</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="showsTableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="createShow">
+    <form id="createShowForm">
+      <label for="hall">Hall:</label>
+      <!-- <input type="number" id="hall" name="hall" min="1" max="2" required /> -->
+       <select name="hall" id="hall">
+        <option value="1">Lille sal</option>
+        <option value="2">Stor sal</option>
+       </select>
+  
+      <label for="time">Date & Time:</label>
+      <input type="datetime-local" id="time" name="time" />
+  
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<employee-footer></employee-footer>
+</body>
+</html>
