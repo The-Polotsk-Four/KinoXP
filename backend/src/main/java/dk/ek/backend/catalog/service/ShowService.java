@@ -87,7 +87,10 @@ public class ShowService {
         return Mapper.toDto(updatedShow);
     }
 
-    public void deleteShow(Long id ){
-        showRepository.deleteById(id);
+    public void deleteShow(Long id) {
+        Show show = showRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Show not found"));
+        show.setCancelled(true);
+        showRepository.save(show);
     }
 }

@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 const movieUrl = "http://localhost:8080/api/shows/movie/";
 const movieId = new URLSearchParams(window.location.search).get("movieId"); // get the movieId for the currently showing movie
-let getShows= [];
 
 
 async function initApp(){
     console.log(movieUrl+movieId);
 
-    shows = await fetchShows(); 
+    shows = await fetchShows();
+
 
     renderShows(shows);
 
@@ -27,8 +27,12 @@ async function fetchShows(){
 function renderShows(shows) {
     const tableBody = document.querySelector("#showsTableBody");
     tableBody.innerHTML = ""; 
-
-    shows.forEach(show => renderShow(show));
+    
+    shows.forEach(show => {
+        if (show.cancelled === false) {
+            renderShow(show);
+        }
+    });
 }
 
 function renderShow(show) {
@@ -49,11 +53,31 @@ function renderShow(show) {
     bookButton.textContent = "Book Tickets";
     bookButton.classList.add("bookButton");
     bookButton.addEventListener("click", () => handleBookClick(show));
+
+    const deleteButtonCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent= "Delete Show";
+    deleteButton.classList.add("deleteButton");
+    deleteButton.addEventListener("click", async () => {
+        await fetch(`http://localhost:8080/api/shows/${show.id}`,{
+            method: "DELETE"
+        });
+        refreshPage();
+    });
+    
+    
     bookButtonCell.appendChild(bookButton);
     row.appendChild(bookButtonCell);
 
+    deleteButtonCell.appendChild(deleteButton);
+    row.appendChild(deleteButtonCell)
+
     document.querySelector("#showsTable").appendChild(row);
 }
+
+function refreshPage(){
+    window.location.reload();
+} 
 
 function renderCell(content) {
     const cell = document.createElement("td");

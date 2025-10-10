@@ -10,6 +10,8 @@ async function initApp(){
     console.log(movieUrl+movieId);
 
     shows = await fetchShows(); 
+    console.log(shows);
+    
 
     renderShows(shows);
 
@@ -27,8 +29,12 @@ async function fetchShows(){
 function renderShows(shows) {
     const tableBody = document.querySelector("#showsTableBody");
     tableBody.innerHTML = ""; 
-
-    shows.forEach(show => renderShow(show));
+    
+    shows.forEach(show => {
+        if (show.cancelled === false) {
+            renderShow(show);
+        }
+    });
 }
 
 function renderShow(show) {
