@@ -41,7 +41,6 @@ class Header extends HTMLElement {
                 color: #ffcc00;
             }
 
-            /* Popup styles */
             .overlay-container {
                 display: none;
                 position: fixed;
@@ -98,13 +97,12 @@ class Header extends HTMLElement {
             <img src="/img/logo.png" alt="Logo">
             <nav>
                 <ul>
-                    <li><a href="/html/index.html">Hjem</a></li>
-                    <li><a href="/html/viewSnacks.html">Snack Udvalg</a></li>
-                    <li><a href="/html/shows.html">I biografen nu</a></li>
+                    <li><a href="../html/index.html">Hjem</a></li>
+                    <li><a href="../html/viewSnacks.html">Snack Udvalg</a></li>
+                    <li><a href="../html/shows.html">I biografen nu</a></li>
                     <li><a href="#">Kommer snart</a></li>
                     <li><a href="#">Billetter</a></li>
-                    <li><a href="/html/contact-info.html">Kontakt</a></li>
-                    <li><button class="login-btn" onclick="togglePopup()">Login</button></li>
+                    <li><a href="../html/contact-info.html">Kontakt</a></li>
                 </ul>
             </nav>
         </header>
@@ -123,7 +121,6 @@ class Header extends HTMLElement {
         `;
     }
 }
-
 customElements.define('header-component', Header);
 
 window.togglePopup = function() {
