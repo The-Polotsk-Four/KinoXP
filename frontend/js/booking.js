@@ -17,7 +17,6 @@ async function initApp(){
 
 
     console.log(bookings);
-    console.log(bookings.hall.id);
 
     renderSeats(bookings);
 }
@@ -136,7 +135,7 @@ function updateSelectedSeatsTable() {
             const row = table.insertRow();
             const rowCell = row.insertCell();
             const seatCell = row.insertCell();
-            rowCell.textContent = "Række: "+seat.row;    // or seat.row if that's the property
+            rowCell.textContent = "Række: "+seat.row;    
             seatCell.textContent = "Sæde: "+seat.seatNumber;
         }
     });

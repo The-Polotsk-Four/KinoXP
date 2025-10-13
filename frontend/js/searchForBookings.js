@@ -9,7 +9,7 @@ async function initApp(){
 
     bookings = document.querySelector("#bookingForm").addEventListener("submit", fetchBookings);
 
-    seeBookings(bookings); 
+    
     console.log("test");
     
 
@@ -23,14 +23,50 @@ function seeBookings(bookings){
     });
 }
 
-function renderBooking(booking){
+function renderBooking(booking) {
+  const row = document.createElement("tr");
 
-    console.log(booking);
-    
+  row.appendChild(renderBookingElement(booking.customerEmail));
+  row.appendChild(renderBookingElement(booking.customerPhoneNumber));
 
 
+  
+  const seats = booking.tickets.map(ticket => {
+    if (ticket.seat) {
+      return `Række ${ticket.seat.row}, Sæde ${ticket.seat.seatNumber}`;
+    } else {
+      return "Ukendt sæde";
+    }
+  }).join("<br>");
+
+  const tdDelete = document.createElement("td");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent= "slet booking";
+  deleteBtn.addEventListener("click", async () => {
+    await fetch(`http://localhost:8080/api/orders/${booking.id}`,{
+        method: "DELETE"
+    });
+    const bookingsTable = document.querySelector("#bookings");
+        while (bookingsTable.rows.length > 1) {
+            bookingsTable.deleteRow(1);
+        }
+  });
+  deleteBtn.className = "delete-btn";
+  deleteBtn.id = "deleteBtn";
+  tdDelete.appendChild(deleteBtn);
+
+  row.appendChild(renderBookingElement(seats));
+  row.appendChild(tdDelete)
+
+
+  document.querySelector("#bookings").appendChild(row);
 }
 
+function renderBookingElement(value) {
+  const cell = document.createElement("td");
+  cell.innerHTML = value;
+  return cell;
+}
 
 async function fetchBookings(e){
     e.preventDefault();
@@ -59,8 +95,16 @@ async function fetchBookings(e){
 
     const data = await resp.json();
     console.log("form submitted");
+
     
 
+    const bookingsTable = document.querySelector("#bookings");
+        while (bookingsTable.rows.length > 1) {
+            bookingsTable.deleteRow(1);
+        }
+
+    
+    seeBookings(data); 
     form.reset();
 
     return data;
