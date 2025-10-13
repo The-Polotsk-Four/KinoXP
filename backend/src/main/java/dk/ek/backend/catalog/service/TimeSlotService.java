@@ -86,6 +86,6 @@ public class TimeSlotService {
     }
 
     public void createTimeSotsForDay(LocalDate date) {
-
+        // TODO this
     }
 }
