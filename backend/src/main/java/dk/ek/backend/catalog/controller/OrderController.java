@@ -2,6 +2,7 @@ package dk.ek.backend.catalog.controller;
 
 
 import dk.ek.backend.catalog.dto.OrderDto;
+import dk.ek.backend.catalog.dto.ShowDto;
 import dk.ek.backend.catalog.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,17 @@ public class OrderController {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    @GetMapping("/email/{customerEmail}")
+    public List<OrderDto> getOrderByEmail(@PathVariable String customerEmail) {
+        return orderService.getByCustomerEmail(customerEmail);
+    }
+
+    @GetMapping("/phonenumber/{customerPhoneNumber}")
+    public List<OrderDto> getOrderByPhoneNumber(@PathVariable int customerPhoneNumber) {
+        return orderService.getByCustomerPhoneNumber(customerPhoneNumber);
+    }
+
 
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto order,
