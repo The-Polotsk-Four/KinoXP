@@ -53,6 +53,7 @@ async function createBooking(e){
     form.reset();
 
     selectedSeats.clear();
+    updateSelectedSeatsTable();         
 
     return data;
 }
@@ -63,6 +64,8 @@ function renderSeats(bookings) {
     const table = document.getElementById("seat-table");
 
     const seats = bookings.hall.seats;
+
+    const bookedSeatIds = bookings.tickets.map(t => t.seat.id);
 
     const maxRow = Math.max(...seats.map(s => s.row));
     const maxCol = Math.max(...seats.map(s => s.seatNumber));
@@ -79,21 +82,31 @@ function renderSeats(bookings) {
         for (let c = 1; c <= maxCol; c++) {
             const seat = rowSeats.find(s => s.seatNumber === c);
             const cell = document.createElement("td");
+            
 
             if (seat) {
                 cell.textContent = seat.seatNumber;
                 cell.dataset.seatId = seat.id;
+                if (bookedSeatIds.includes(seat.id)){
+                    cell.style.color = 'red';
+                    cell.style.pointerEvents = 'none';
+                }else{
 
                 cell.addEventListener("click", () => {
                     if (selectedSeats.has(seat.id)) {
                         selectedSeats.delete(seat.id);
                         cell.classList.remove("selected");
+                        cell.style.color='black';
                     } else {
                         selectedSeats.add(seat.id);
                         cell.classList.add("selected");
-                    }
+                        cell.style.color='red';
+                        updateSelectedSeatsTable();
+
+                    } 
                     console.log("Selected seats:", Array.from(selectedSeats));
                 });
+            }
             }
             rowEl.appendChild(cell);
         }
@@ -108,5 +121,24 @@ async function fetchBookings(){
         console.log("Error: "+resp.status);
     }
     return await resp.json();
+}
+
+
+function updateSelectedSeatsTable() {
+    const table = document.getElementById("seatNumber");
+    
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    selectedSeats.forEach(seatId => {
+        const seat = bookings.hall.seats.find(s => s.id === seatId);
+        if (seat) {
+            const row = table.insertRow();
+            const rowCell = row.insertCell();
+            const seatCell = row.insertCell();
+            rowCell.textContent = "Række: "+seat.row;    // or seat.row if that's the property
+            seatCell.textContent = "Sæde: "+seat.seatNumber;
+        }
+    });
 }
 
