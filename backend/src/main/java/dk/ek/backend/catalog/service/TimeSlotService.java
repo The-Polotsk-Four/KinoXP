@@ -5,6 +5,8 @@ import dk.ek.backend.catalog.mapper.Mapper;
 import dk.ek.backend.catalog.model.TimeSlot;
 import dk.ek.backend.catalog.model.User;
 import dk.ek.backend.catalog.repository.TimeSlotRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -82,5 +84,9 @@ public class TimeSlotService {
         }
 
         return timeSlotDtos;
+    }
+
+    public void createTimeSotsForDay(LocalDate date) {
+        // TODO this
     }
 }

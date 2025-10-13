@@ -131,6 +131,7 @@ public class Mapper {
                 user.getAge()
         );
     }
+
     public static MovieDto toDto(Movie movie) {
         List<ShowDto> shows = new ArrayList<>();
         for (Show show : movie.getShow()) {
@@ -148,88 +149,92 @@ public class Mapper {
                 movie.getStatus(),
                 shows);
     }
-    public static Hall toEntity(HallDto hallDto){
-            Hall hall= new Hall();
-            hall.setId(hallDto.id());
-            return hall;
+
+    public static Hall toEntity(HallDto hallDto) {
+        Hall hall = new Hall();
+        hall.setId(hallDto.id());
+        return hall;
     }
 
-    public static Order toEntity(OrderDto orderDto){
-            Order order = new Order();
-            order.setId(orderDto.id());
-            order.setPrice(orderDto.price());
-            order.setCustomerEmail(orderDto.customerEmail());
-            order.setCustomerPhoneNumber(orderDto.customerPhoneNumber());
-            order.setTimeOfPurchase(orderDto.timeOfPurchase());
+    public static Order toEntity(OrderDto orderDto) {
+        Order order = new Order();
+        order.setId(orderDto.id());
+        order.setPrice(orderDto.price());
+        order.setCustomerEmail(orderDto.customerEmail());
+        order.setCustomerPhoneNumber(orderDto.customerPhoneNumber());
+        order.setTimeOfPurchase(orderDto.timeOfPurchase());
 
-            for (TicketDto ticketDto: orderDto.tickets()){
-                order.addTicket(toEntity(ticketDto));
-            }
-            return order;
+        for (TicketDto ticketDto : orderDto.tickets()) {
+            order.addTicket(toEntity(ticketDto));
+        }
+        return order;
     }
 
-    public static Seat toEntity(SeatDto seatDto){
-            Seat seat = new Seat();
-            seat.setId(seatDto.id());
-            seat.setRowNumber(seatDto.row());
-            seat.setSeatNumber(seatDto.seatNumber());
+    public static Seat toEntity(SeatDto seatDto) {
+        Seat seat = new Seat();
+        seat.setId(seatDto.id());
+        seat.setRowNumber(seatDto.row());
+        seat.setSeatNumber(seatDto.seatNumber());
 
 //            for (TicketDto ticketDto: seatDto.ticket()) {
 //                seat.addTicket(toEntity(ticketDto));
 //            }
-            return seat;
+        return seat;
     }
 
-    public static Show toEntity(ShowDto showDto){
-            Show show = new Show();
-            show.setId(showDto.id());
-            show.setMovie(toEntity(showDto.movie()));
-            show.setTimeOfShowing(showDto.timeOfShowing());
-            show.setHall(toEntity(showDto.hall()));
+    public static Show toEntity(ShowDto showDto) {
+        Show show = new Show();
+        show.setId(showDto.id());
+        show.setMovie(toEntity(showDto.movie()));
+        show.setTimeOfShowing(showDto.timeOfShowing());
+        show.setHall(toEntity(showDto.hall()));
 
-            for (TicketDto ticketDto : showDto.tickets()) {
-                show.addTicket(toEntity(ticketDto));
-            }
-            return show;
+        for (TicketDto ticketDto : showDto.tickets()) {
+            show.addTicket(toEntity(ticketDto));
+        }
+        return show;
     }
 
-    public static Snack toEntity(SnackDto snackDto){
-            Snack snack = new Snack();
-            snack.setId(snackDto.id());
-            snack.setName(snackDto.name());
-            snack.setPrice(snackDto.price());
-            return snack;
+    public static Snack toEntity(SnackDto snackDto) {
+        Snack snack = new Snack();
+        snack.setId(snackDto.id());
+        snack.setName(snackDto.name());
+        snack.setPrice(snackDto.price());
+        return snack;
     }
 
-    public static Ticket toEntity(TicketDto ticketDto){
-            Ticket ticket = new Ticket();
-            ticket.setId(ticketDto.id());
-            ticket.setPrice(ticketDto.price());
-            ticket.setStatus(ticketDto.status());
-            ticket.setTimeOfShowing(ticketDto.timeOfShowing());
-            ticket.setSeat(toEntity(ticketDto.seat()));
-            return ticket;
+    public static Ticket toEntity(TicketDto ticketDto) {
+        Ticket ticket = new Ticket();
+        ticket.setId(ticketDto.id());
+        ticket.setPrice(ticketDto.price());
+        ticket.setStatus(ticketDto.status());
+        ticket.setTimeOfShowing(ticketDto.timeOfShowing());
+        ticket.setSeat(toEntity(ticketDto.seat()));
+        return ticket;
     }
 
-    public static TimeSlot toEntity(TimeSlotDto timeSlotDto){
-            TimeSlot timeSlot = new TimeSlot();
-            timeSlot.setId(timeSlotDto.id());
-            timeSlot.setStartTime(timeSlotDto.startTime());
-            timeSlot.setEndTime(timeSlotDto.endTime());
-            timeSlot.setRole(timeSlotDto.role());
+    public static TimeSlot toEntity(TimeSlotDto timeSlotDto) {
+        TimeSlot timeSlot = new TimeSlot();
+        timeSlot.setId(timeSlotDto.id());
+        timeSlot.setDate(timeSlotDto.date());
+        timeSlot.setStartTime(timeSlotDto.startTime());
+        timeSlot.setEndTime(timeSlotDto.endTime());
+        timeSlot.setRole(timeSlotDto.role());
+        if (timeSlotDto.user() != null) {
             timeSlot.setUser(toEntity(timeSlotDto.user()));
-            return timeSlot;
+        }
+        return timeSlot;
     }
 
-    public static User toEntity(UserDto userDto){
-            User user = new User();
-            user.setId(userDto.id());
-            user.setUserRole(userDto.role());
-            user.setEmail(userDto.email());
-            user.setPhoneNumber(userDto.phoneNumber());
-            user.setAge(userDto.age());
+    public static User toEntity(UserDto userDto) {
+        User user = new User();
+        user.setId(userDto.id());
+        user.setUserRole(userDto.role());
+        user.setEmail(userDto.email());
+        user.setPhoneNumber(userDto.phoneNumber());
+        user.setAge(userDto.age());
 
-            return user;
+        return user;
     }
 
 
@@ -242,7 +247,7 @@ public class Mapper {
         movie.setPoster(movieDto.poster());
         movie.setTrailer(movieDto.trailer());
         movie.setActors(movieDto.actors());
-        for (ShowDto showDto : movieDto.show()){
+        for (ShowDto showDto : movieDto.show()) {
             movie.addShow(toEntity(showDto));
         }
 
