@@ -7,8 +7,26 @@ document.addEventListener("DOMContentLoaded", initApp);
 async function initApp(){
     console.log("js loaded");
 
-    document.querySelector("#bookingForm").addEventListener("submit", fetchBookings)
+    bookings = document.querySelector("#bookingForm").addEventListener("submit", fetchBookings);
 
+    seeBookings(bookings); 
+    console.log("test");
+    
+
+
+
+}
+
+function seeBookings(bookings){
+    bookings.forEach(booking => {
+        renderBooking(booking)
+    });
+}
+
+function renderBooking(booking){
+
+    console.log(booking);
+    
 
 
 }
@@ -46,14 +64,4 @@ async function fetchBookings(e){
     form.reset();
 
     return data;
-
-
-
-
-
-
-
-
-
-
 }
