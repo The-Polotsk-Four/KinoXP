@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,10 +43,21 @@ public class TimeSlotController {
         return ResponseEntity.ok(timeSlotService.getByDate(date));
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<TimeSlotDto> createTimeSlot(@RequestBody TimeSlotDto timeSlotDto) {
+//    @PostMapping("/{id}")
+//    public ResponseEntity<TimeSlotDto> createTimeSlot(@RequestBody TimeSlotDto timeSlotDto) {
+//
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                .body(timeSlotService.createTimeSlot(timeSlotDto));
+//    }
+
+    @PostMapping
+    public ResponseEntity<List<TimeSlotDto>> createMultipleTimeSlot(@RequestBody List<TimeSlotDto> timeSlotDtos) {
+        List<TimeSlotDto> updatedList = new ArrayList<>();
+        for (var timeSlotDto : timeSlotDtos) {
+            updatedList.add(timeSlotService.createTimeSlot(timeSlotDto));
+        }
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(timeSlotService.createTimeSlot(timeSlotDto));
+                .body(updatedList);
     }
 
     @PutMapping("/{id}")
