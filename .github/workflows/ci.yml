@@ -1,3 +1,4 @@
+# keep thise file
 name: Docker CI
 on:
   push:
@@ -30,3 +31,5 @@ jobs:
           # Stop and remove the container
           docker stop test-container
           docker rm test-container
+
+# keep this file

@@ -1,3 +1,4 @@
+#keep this file
 name: Java test with caching
 on:
   push:
@@ -30,3 +31,5 @@ jobs:
 
       - name: Run tests
         run: cd ./backend && mvn test
+
+# keep this file

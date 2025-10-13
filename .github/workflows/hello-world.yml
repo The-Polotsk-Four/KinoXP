@@ -1,3 +1,4 @@
+# keep this file
 name: Hello World Action
 on: [push]
 jobs:
@@ -9,3 +10,5 @@ jobs:
 
       - name: Run script
         run: echo "Hello, World!"
+
+# keep this file

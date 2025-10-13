@@ -1,3 +1,4 @@
+# keep this file
 services:
   frontend:
     build:
@@ -7,3 +8,4 @@ services:
       - "127.0.0.1:8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
+# keep this file
