@@ -6,22 +6,6 @@ class Footer extends HTMLElement{
     connectedCallback(){
         this.innerHTML =`
 
-        <style>
-         footer {
-    background-color: #000;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-    left: 0;
-    bottom: 0px;
-    top: auto;
-    width: auto;
-}
-
-footer p {
-    margin: 5px 0;
-}
-</style>
 
 <footer>
     <p>&copy; 2025 KinoXP Cinema</p>
