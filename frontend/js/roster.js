@@ -42,12 +42,20 @@ function renderRoster() {
 function renderTimeSlot(timeSlot) {
     const row = document.createElement('tr');
 
-    row.appendChild(renderCell(timeSlot.id));
+    // row.appendChild(renderCell(timeSlot.id));
     row.appendChild(renderCell(timeSlot.date));
     row.appendChild(renderCell(timeSlot.startTime));
     row.appendChild(renderCell(timeSlot.endTime));
     row.appendChild(renderCell(timeSlot.role));
     row.appendChild(renderCell(renderUser(timeSlot.user)));
+
+    const editButton = document.createElement("button");
+    // editButton.appendChild(document.createTextNode("Rediger vagt"));
+    row.appendChild(renderButtonCell('rediger vagt'));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.appendChild(document.createTextNode("Rediger vagt"));
+    row.appendChild(renderButtonCell('slet vagt'));
 
     document.querySelector('#rosterTableBody').appendChild(row);
 
@@ -56,6 +64,14 @@ function renderTimeSlot(timeSlot) {
 function renderCell(content) {
     const cell = document.createElement('td');
     cell.textContent = content;
+    return cell;
+}
+
+function renderButtonCell(content) {
+    const cell = document.createElement('td');
+    const button = document.createElement("button");
+    button.appendChild(document.createTextNode(content));
+    cell.appendChild(button);
     return cell;
 }
 
