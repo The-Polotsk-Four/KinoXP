@@ -14,11 +14,61 @@
 </head>
 <body>
 <header-component></header-component>
+<main id="snackUdvalg">
+    <h2>Snackudvalg</h2>
+    <div id="snackContainer"></div>
+    <p id="snackStatus"></p>
+</main>
 
-<section class="viewSnacks">
-    Snacks og Drikkevare
-</section>
+<script>
+    const API_URL = "http://localhost:8080/api/snacks";
+    const snackContainer = document.getElementById("snackContainer");
+    const snackStatus = document.getElementById("snackStatus");
 
-</body>
+    async function hentSnacks() {
+        snackStatus.textContent = "Indlæser snacks...";
+        snackContainer.innerHTML = "";
+
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error("Fejl ved hentning");
+            const snacks = await response.json();
+
+            if (snacks.length === 0) {
+                snackStatus.textContent = "Der er ingen snacks tilgængelige.";
+                return;
+            }
+
+            snackStatus.textContent = "";
+            snacks.forEach((snack) => {
+                const div = document.createElement("div");
+                div.style.border = "1px solid #ccc";
+                div.style.padding = "10px";
+                div.style.margin = "10px 0";
+
+                const name = document.createElement("h3");
+                name.textContent = snack.name;
+
+                const price = document.createElement("p");
+                price.textContent = "Pris: " + snack.price + " kr";
+
+                const quantity = document.createElement("p");
+                quantity.textContent = "Antal: " + snack.quantity + " stk.";
+
+                div.appendChild(name);
+                div.appendChild(price);
+                div.appendChild(quantity);
+
+                snackContainer.appendChild(div);
+            });
+        } catch (err) {
+            console.error(err);
+            snackStatus.textContent = "Kunne ikke hente snacks. Prøv igen senere.";
+        }
+    }
+
+    hentSnacks();
+</script>
 <footer-component></footer-component>
+</body>
 </html>

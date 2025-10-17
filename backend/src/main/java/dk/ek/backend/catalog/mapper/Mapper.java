@@ -86,8 +86,7 @@ public class Mapper {
                 snack.getId(),
                 snack.getName(),
                 snack.getPrice(),
-                snack.getQuantity(),
-                snack.getDateOfPurchase()
+                snack.getQuantity()
         );
     }
 
