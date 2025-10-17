@@ -19,6 +19,9 @@ public class Show {
     @ManyToOne
     private Hall hall;
 
+    private boolean cancelled = false;
+
+
     @OneToMany(mappedBy = "show", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
 
@@ -39,6 +42,14 @@ public class Show {
     }
 
     public Show() {
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 
     public void addTicket(Ticket ticket){

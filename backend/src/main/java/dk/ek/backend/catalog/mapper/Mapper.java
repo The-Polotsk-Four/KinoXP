@@ -72,6 +72,7 @@ public class Mapper {
 
         return new ShowDto(
                 show.getId(),
+                show.isCancelled(),
                 toDto(show.getMovie()),
 //                toDto(show.getMovie()),
                 show.getTimeOfShowing(),
@@ -185,6 +186,7 @@ public class Mapper {
     public static Show toEntity(ShowDto showDto) {
         Show show = new Show();
         show.setId(showDto.id());
+        show.setCancelled(showDto.cancelled());
         show.setMovie(toEntity(showDto.movie()));
         show.setTimeOfShowing(showDto.timeOfShowing());
         show.setHall(toEntity(showDto.hall()));
