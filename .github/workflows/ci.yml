@@ -20,7 +20,7 @@ jobs:
         run: ls
 
       - name: Build Docker image
-        run: docker build -t app:test .
+        run: docker build -t app:test ./backend/
 
       - name: Run cd Docker container
         run: |
