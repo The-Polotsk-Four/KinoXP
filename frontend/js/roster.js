@@ -1,16 +1,22 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
 const rosterUrl = 'http://localhost:8080/api/roster';
+const userUrl = 'http://localhost:8080/api/users';
 const calender = document.querySelector("#date");
+const editPopup = document.querySelector("#roster-popup")
 let date = new Date;
 let roster;
+let users;
 
 async function initApp() {
     // console.log('date: ' + date);
     calender.addEventListener('input', getDate);
+    editPopup.addEventListener('submit', handleEditSubmit);
     // console.log(rosterUrl);
-    roster = await fetchRoster();
+    await fetchRoster();
+    await fetchUsers();
     console.log('roster: ' + roster);
+    console.log('users: ' + users);
     renderRoster(roster);
 }
 
@@ -31,6 +37,19 @@ async function fetchRoster() {
     return roster;
 }
 
+async function fetchUsers() {
+    const response = await fetch(userUrl);
+    if (!response.ok) {
+        console.log("Error: " + response.status);
+        document.querySelector("#messages").textContent = "FEJL!";
+        document.querySelector("#messages").classList.toggle("error");
+    }
+    // console.log('roster fetched');
+    users = await response.json();
+    return users;
+
+}
+
 function renderRoster() {
     const tableBody = document.querySelector('#rosterTableBody');
     // console.log('tableBody innerHTML: ' + tableBody.innerHTML);
@@ -49,13 +68,9 @@ function renderTimeSlot(timeSlot) {
     row.appendChild(renderCell(timeSlot.role));
     row.appendChild(renderCell(renderUser(timeSlot.user)));
 
-    const editButton = document.createElement("button");
-    // editButton.appendChild(document.createTextNode("Rediger vagt"));
-    row.appendChild(renderButtonCell('rediger vagt'));
+    row.appendChild(renderButtonCell('edit', timeSlot.id));
 
-    const deleteButton = document.createElement("button");
-    deleteButton.appendChild(document.createTextNode("Rediger vagt"));
-    row.appendChild(renderButtonCell('slet vagt'));
+    row.appendChild(renderButtonCell('delete', timeSlot.id));
 
     document.querySelector('#rosterTableBody').appendChild(row);
 
@@ -67,10 +82,17 @@ function renderCell(content) {
     return cell;
 }
 
-function renderButtonCell(content) {
+function renderButtonCell(content, id) {
     const cell = document.createElement('td');
     const button = document.createElement("button");
-    button.appendChild(document.createTextNode(content));
+    if (content === 'edit') {
+        button.appendChild(document.createTextNode('rediger vagt'));
+        button.addEventListener("click",  handleEditClick);
+    } else if (content === 'delete') {
+        button.appendChild(document.createTextNode('slet vagt'));
+        button.addEventListener("click",  handleDeleteClick);
+    }
+    button.id = `btn-${id}`;
     cell.appendChild(button);
     return cell;
 }
@@ -83,11 +105,48 @@ function renderUser(user) {
     return user.name;
 }
 
+async function handleEditClick(event) {
+    console.log('edit');
+    console.log(event.target);
+    const id = event.target.id.split('-')[1];
+    toggleRosterPopup(event.target.id);
+    let user = users.find(function (user) {
+        return user.id === id;
+    });
+    console.log('user: ' + user.name);
+}
+
+async function handleEditSubmit(event) {
+    event.preventDefault();
+    console.log(event);
+}
+
+function toggleRosterPopup(id) {
+    const overlay = document.getElementById('roster-popup');
+    overlay.classList.toggle('show');
+}
+
+async function handleDeleteClick(event) {
+    console.log('delete');
+    console.log(event.target);
+    const id = event.target.id.split('-')[1];
+    console.log(id);
+    try {
+        const res = await fetch(`http://localhost:8080/api/roster/${id}`, {
+            method: 'DELETE',
+        });
+
+        roster = fullWorkday;
+
+        if (!res.ok) throw new Error("Failed to save day");
+        // alert("✅ Day saved successfully!");
+    } catch (err) {
+        alert("❌ " + err.message);
+    }
+}
+
 async function getDate() {
     const dateControl = document.querySelector('input[type="date"]');
-    // console.log('getDate test prints');
-    // console.log(dateControl.value); // gets date
-    // console.log(dateControl.valueAsNumber); // gets epoch
 
     date.setTime(dateControl.valueAsNumber);
 
