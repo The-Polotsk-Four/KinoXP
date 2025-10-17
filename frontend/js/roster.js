@@ -108,20 +108,35 @@ function renderUser(user) {
 async function handleEditClick(event) {
     console.log('edit');
     console.log(event.target);
-    const id = event.target.id.split('-')[1];
-    toggleRosterPopup(event.target.id);
-    let user = users.find(function (user) {
-        return user.id === id;
-    });
-    console.log('user: ' + user.name);
+    toggleRosterPopup();
 }
 
 async function handleEditSubmit(event) {
     event.preventDefault();
+    const name = event.target[0].value;
+    console.log(name);
+    const id = event.target.id.split('-')[1];
+    console.log('event: ');
     console.log(event);
+    let user = users.find(function (user) {
+        return user.name.toLocaleLowerCase() === name.toLowerCase();
+    });
+    console.log('user: ' + user.name);
+    try {
+        const res = await fetch(`http://localhost:8080/api/roster/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"user": `${user}`}),
+        });
+
+        if (!res.ok) throw new Error("Something went wrong");
+        // alert("✅ Day saved successfully!");
+    } catch (err) {
+        alert("❌ " + err.message);
+    }
 }
 
-function toggleRosterPopup(id) {
+function toggleRosterPopup() {
     const overlay = document.getElementById('roster-popup');
     overlay.classList.toggle('show');
 }
