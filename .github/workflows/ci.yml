@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - github-action
   pull_request:
     branches:
       - main
@@ -15,9 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-      - name: print folder structure
-        run: ls
 
       - name: Build Docker image
         run: docker build -t app:test ./backend/
