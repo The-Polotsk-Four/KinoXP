@@ -1,13 +1,11 @@
 package dk.ek.backend.catalog.controller;
 
 import dk.ek.backend.catalog.dto.TimeSlotDto;
-import dk.ek.backend.catalog.model.TimeSlot;
 import dk.ek.backend.catalog.service.TimeSlotService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +59,19 @@ public class TimeSlotController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TimeSlotDto> updateTimeSLot(@PathVariable Long id, @RequestBody TimeSlotDto timeSlotDto) {
+    public ResponseEntity<TimeSlotDto> updateTimeSlot(@PathVariable Long id, @RequestBody TimeSlotDto timeSlotDto) {
         try {
             return ResponseEntity.ok(timeSlotService.updateTimeSlot(id, timeSlotDto));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delteTimeSlot(@PathVariable Long id) {
+        try {
+            timeSlotService.deleteTimeSlot(id);
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

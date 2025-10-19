@@ -15,7 +15,8 @@ public class Snack {
     private Long id;
 
     private String name;
-    private BigDecimal price;
+    private int price;
+    private int quantity;
 
     public Long getId() {
         return id;
@@ -33,20 +34,12 @@ public class Snack {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
-    }
-
-    public LocalDateTime getDateOfPurchase() {
-        return dateOfPurchase;
-    }
-
-    public void setDateOfPurchase(LocalDateTime dateOfPurchase) {
-        this.dateOfPurchase = dateOfPurchase;
     }
 
     public int getQuantity() {
@@ -57,6 +50,4 @@ public class Snack {
         this.quantity = quantity;
     }
 
-    private LocalDateTime dateOfPurchase;
-    private int quantity;
 }

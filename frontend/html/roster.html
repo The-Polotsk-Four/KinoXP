@@ -25,7 +25,7 @@
     <div class="roster">
         <h1>Vagtplan</h1>
         <div class="data-table">
-            <h2>DATE</h2>
+            <h2 id="date-title">DATE</h2>
             <input type="date" id="date"/>
             <div class="table">
                 <table id="rosterTable">
@@ -43,6 +43,16 @@
                     <tbody id="rosterTableBody">
                     </tbody>
                 </table>
+            </div>
+            <div id="roster-popup" class="overlay-container">
+                <div class="popup-box">
+                    <h2>Opdater vagt</h2>
+                    <form class="form-container">
+                        <input class="form-input" type="text" placeholder="Medarbejder" required>
+                        <button class="btn-submit" type="submit">Opdater</button>
+                    </form>
+                    <button class="btn-close-popup" onclick="toggleRosterPopup()">Close</button>
+                </div>
             </div>
         </div>
     </div>
