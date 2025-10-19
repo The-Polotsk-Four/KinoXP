@@ -95,7 +95,7 @@ function renderSeats(bookings) {
                     if (selectedSeats.has(seat.id)) {
                         selectedSeats.delete(seat.id);
                         cell.classList.remove("selected");
-                        cell.style.color='black';
+                        cell.style.color='white';
                     } else {
                         selectedSeats.add(seat.id);
                         cell.classList.add("selected");

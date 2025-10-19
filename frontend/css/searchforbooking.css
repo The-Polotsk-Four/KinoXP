@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #eee;
+  text-align: center;
+}
+
+h1 {
+  color: darkred;
+  margin: 40px 0 20px;
+  font-size: 1.8rem;
+}
+
+/* --- Search Form --- */
+#orderTickets {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  width: 60%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 30px;
+}
+
+#bookingForm input {
+  background-color: #111;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+#bookingForm input:focus {
+  border-color: darkred;
+  outline: none;
+}
+
+#bookingForm button {
+  background-color: darkred;
+  color: #eee;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+#bookingForm button:hover {
+  background-color: #b30000;
+  transform: scale(1.05);
+}
+
+#bookingForm button:active {
+  transform: scale(0.98);
+}
+
+/* --- Bookings Table --- */
+#bookings {
+  width: 90%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+#bookings th,
+#bookings td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+
+#bookings th {
+  background-color: darkred;
+  color: #eee;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#bookings tr:nth-child(even) {
+  background-color: #181818;
+}
+
+#bookings tr:hover {
+  background-color: #222;
+}
+
+/* --- Delete Button --- */
+.delete-btn {
+  background-color: #8b0000;
+  color: #eee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+.delete-btn:hover {
+  background-color: #b30000;
+  transform: scale(1.05);
+}
+
+.delete-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 700px) {
+  #orderTickets {
+    width: 90%;
+  }
+
+  #bookings {
+    font-size: 0.9rem;
+  }
+
+  #bookingForm {
+    max-width: 100%;
+  }
+}

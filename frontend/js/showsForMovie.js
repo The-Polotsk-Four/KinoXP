@@ -40,14 +40,14 @@ function renderShow(show) {
     const showTime = new Date(show.timeOfShowing).toLocaleString();
     row.appendChild(renderCell(showTime));
 
-    row.appendChild(renderCell(show.hall.name ?? ("Hall #" + show.hall.id)));
+    row.appendChild(renderCell(show.hall.name ?? ("Sal " + show.hall.id)));
 
     const availableSeats = show.hall.seats ? show.hall.seats.length - show.tickets.length : "N/A";
     row.appendChild(renderCell(availableSeats));
 
     const bookButtonCell = document.createElement("td");
     const bookButton = document.createElement("button");
-    bookButton.textContent = "Book Tickets";
+    bookButton.textContent = "Book billetter";
     bookButton.classList.add("bookButton");
     bookButton.addEventListener("click", () => handleBookClick(show));
     bookButtonCell.appendChild(bookButton);

@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Showings</title>
 
-    <link rel="stylesheet" href="../css/employeeHeader.css" type="text/css">
-  <link rel="stylesheet" href="../css/employeeFooter.css" type="text/css">
-    <link rel="stylesheet" href="../css/employee-css.css">
+  <link rel="stylesheet" href="../css/header.css" type="text/css">
+  <link rel="stylesheet" href="../css/footer.css" type="text/css">
+  <link rel="stylesheet" href="../css/employee-css.css">
+  <link rel="stylesheet" href="../css/shows.css">
+  <script src ="../js/components/header.js" type="text/javascript" defer></script>
+  <script src="../js/components/footer.js" type="text/javascript" defer></script>
+
     <script defer src="../js/showsForMovie.js"></script>
     <script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
-    <script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
 </head>
 <body>
-<employee-header></employee-header>
+  <header-component></header-component>
 
   <h1 id="movieTitle">Showings</h1>
 
@@ -21,16 +24,16 @@
     <thead>
       <tr>
         <th>Show ID</th>
-        <th>Time of Showing</th>
-        <th>Hall ID</th>
-        <th>Available Seats</th>
-        <th>Action</th>
+        <th>Visningstidspunkt</th>
+        <th>Sal</th>
+        <th>Ledige sæder</th>
+        <th>Book billetter</th>
       </tr>
     </thead>
     <tbody id="showsTableBody">
     </tbody>
   </table>
 
-<employee-footer></employee-footer>
+  <footer-component></footer-component>
 </body>
 </html>

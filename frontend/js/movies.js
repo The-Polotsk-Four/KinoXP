@@ -63,7 +63,7 @@ function renderMovie (movie){
     seeShowing.addEventListener("click", () => {
     window.location.href = `shows.html?movieId=${movie.id}`;
 });
-    seeShowing.textContent="See showings";
+    seeShowing.textContent="Se visninger";
     seeShowingCell.appendChild(seeShowing);
     row.appendChild(seeShowingCell);
 

@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script defer src="../js/searchForBookings.js"></script>
+    <link rel="stylesheet" href="../css/searchforbooking.css">
+    <link rel="stylesheet" href="../css/employeeFooter.css">
+    <link rel="stylesheet" href="../css/employeeHeader.css">
+    <script src="../js/components/employeeHeader.js" type="text/javascript" defer></script>
+    <script src="../js/components/employeeFooter.js" type="text/javascript" defer></script>
+
 </head>
 <body>
+
+<employee-header></employee-header>
+
     <h1>Søg efter kunde email eller telefonnummer</h1>
 
 
   <div id="orderTickets" class="orderTickets">
     <form id="bookingForm">
-      <input type="number" name="phone" id="phone" placeholder="Phone Number" > 
+      <input type="number" name="phone" id="phone" placeholder="telefonnummer" > 
       <input type="email" name="email" id="email" placeholder="E-mail">
       <button type="submit">Submit</button>
     </form>
@@ -27,5 +36,7 @@
         </tr>
       </table>
   </div>
+<employee-footer></employee-footer>
+
 </body>
 </html>

@@ -7,7 +7,7 @@ class Header extends HTMLElement {
           <ul>
             <li><a href="../html/employee-index.html">Hjem</a></li>
             <li><a href="../html/snack-manager.html">Snack</a></li>
-            <li><a href="../html/shows.html">Show admin</a></li>
+            <li><a href="../html/employeemovies.html">Opret visninger</a></li>
             <li><a href="../html/movieManager.html">Film admin</a></li>
             <li><a href="../html/roster.html">Vagtplan</a></li>
             <li><button class="login-btn" onclick="togglePopup()">Login</button></li>

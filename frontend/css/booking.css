@@ -1,0 +1,159 @@
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  padding: 30px; */
+}
+
+/* --- Seat Map --- */
+#seats {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  margin: 40px auto;
+  text-align: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#seats h1 {
+  color: darkred;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+#seat-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+#seat-table td {
+  border: 1px solid #333;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #222;
+  color: #eee;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+  border-radius: 6px;
+}
+
+#seat-table td:hover {
+  background-color: #333;
+}
+
+#seat-table td.selected {
+  background-color: darkred;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+#seat-table td[style*="color: red"] {
+  background-color: #550000;
+  cursor: not-allowed;
+}
+
+/* --- Order form --- */
+#orderTickets {
+  background-color: #1a1a1a;
+  padding: 30px;
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#orderForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+}
+
+#orderForm input {
+  background-color: #111;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+#orderForm input:focus {
+  border-color: darkred;
+  outline: none;
+}
+
+#orderForm button {
+  background-color: darkred;
+  color: #eee;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+#orderForm button:hover {
+  background-color: #b30000;
+  transform: scale(1.05);
+}
+
+#orderForm button:active {
+  transform: scale(0.98);
+}
+
+/* --- Selected Seats Table --- */
+#seatNumber {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #181818;
+  color: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#seatNumber td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+#seatNumber tr:first-child td {
+  background-color: darkred;
+  font-weight: bold;
+}
+
+#seatNumber tr:nth-child(even) {
+  background-color: #141414;
+}
+
+@media (max-width: 700px) {
+  #seat-table td {
+    width: 30px;
+    height: 30px;
+  }
+
+  #orderTickets {
+    width: 90%;
+  }
+
+  #orderForm {
+    max-width: 100%;
+  }
+}
