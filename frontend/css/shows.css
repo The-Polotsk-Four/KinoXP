@@ -133,8 +133,8 @@ button.deleteButton:active {
 
 #createShow select,
 #createShow input[type="datetime-local"] {
-  background-color: #111;
-  color: #eee;
+  background-color: #fffdfd;
+  color: #000000;
   border: 1px solid #333;
   border-radius: 6px;
   padding: 8px;
